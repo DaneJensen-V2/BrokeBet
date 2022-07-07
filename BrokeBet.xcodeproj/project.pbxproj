@@ -3,18 +3,70 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		784568BE10A0FC6EADBEC375 /* Pods_BrokeBet_BrokeBetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB34CB746E6263A903468E6 /* Pods_BrokeBet_BrokeBetUITests.framework */; };
+		9F321A32E252E3E1CF274407 /* Pods_BrokeBet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EDBA8174D9EF0A2053B552 /* Pods_BrokeBet.framework */; };
 		A53A1CEA2714C4BA0067BD08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CE92714C4BA0067BD08 /* AppDelegate.swift */; };
 		A53A1CEC2714C4BA0067BD08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CEB2714C4BA0067BD08 /* SceneDelegate.swift */; };
 		A53A1CEE2714C4BA0067BD08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CED2714C4BA0067BD08 /* ViewController.swift */; };
-		A53A1CF12714C4BA0067BD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53A1CEF2714C4BA0067BD08 /* Main.storyboard */; };
 		A53A1CF32714C4BA0067BD08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53A1CF22714C4BA0067BD08 /* Assets.xcassets */; };
 		A53A1CF62714C4BA0067BD08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53A1CF42714C4BA0067BD08 /* LaunchScreen.storyboard */; };
 		A53A1D012714C4BA0067BD08 /* BrokeBetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D002714C4BA0067BD08 /* BrokeBetTests.swift */; };
 		A53A1D0C2714C4BA0067BD08 /* BrokeBetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D0B2714C4BA0067BD08 /* BrokeBetUITests.swift */; };
+		A53A1D1A2714D41B0067BD08 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D192714D41A0067BD08 /* ScoreManager.swift */; };
+		A53A1D1C2714ED6E0067BD08 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D1B2714ED6E0067BD08 /* GameData.swift */; };
+		A53A1D1F2714F7E00067BD08 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D1D2714F7E00067BD08 /* GameTableViewCell.swift */; };
+		A53A1D202714F7E00067BD08 /* GameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D1E2714F7E00067BD08 /* GameTableViewCell.xib */; };
+		A53A1D22271506690067BD08 /* MatchupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D21271506690067BD08 /* MatchupData.swift */; };
+		A53A1D29271659160067BD08 /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D28271659160067BD08 /* PlayerStatsViewController.swift */; };
+		A53A1D2C271747420067BD08 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D2A271747420067BD08 /* HeaderTableViewCell.swift */; };
+		A53A1D2D271747420067BD08 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D2B271747420067BD08 /* HeaderTableViewCell.xib */; };
+		A53A1D3A271751600067BD08 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D2E2717515F0067BD08 /* Roboto-Bold.ttf */; };
+		A53A1D3B271751600067BD08 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D2F2717515F0067BD08 /* Roboto-Light.ttf */; };
+		A53A1D3C271751600067BD08 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D302717515F0067BD08 /* Roboto-ThinItalic.ttf */; };
+		A53A1D3D271751600067BD08 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D312717515F0067BD08 /* Roboto-BlackItalic.ttf */; };
+		A53A1D3E271751600067BD08 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D322717515F0067BD08 /* Roboto-Regular.ttf */; };
+		A53A1D3F271751600067BD08 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D332717515F0067BD08 /* Roboto-Thin.ttf */; };
+		A53A1D40271751600067BD08 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D34271751600067BD08 /* Roboto-Italic.ttf */; };
+		A53A1D41271751600067BD08 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D35271751600067BD08 /* Roboto-Medium.ttf */; };
+		A53A1D42271751600067BD08 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D36271751600067BD08 /* Roboto-LightItalic.ttf */; };
+		A53A1D43271751600067BD08 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D37271751600067BD08 /* Roboto-MediumItalic.ttf */; };
+		A53A1D44271751600067BD08 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D38271751600067BD08 /* Roboto-BoldItalic.ttf */; };
+		A53A1D45271751600067BD08 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D39271751600067BD08 /* Roboto-Black.ttf */; };
+		A53A1D4827175F5B0067BD08 /* StatsMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D4727175F5B0067BD08 /* StatsMananger.swift */; };
+		A53A1D4A27175FF00067BD08 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D4927175FF00067BD08 /* PlayerStats.swift */; };
+		A53A1D4D2717D4900067BD08 /* StatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D4B2717D4900067BD08 /* StatTableViewCell.swift */; };
+		A53A1D4E2717D4900067BD08 /* StatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D4C2717D4900067BD08 /* StatTableViewCell.xib */; };
+		A53A1D522718A6070067BD08 /* PassingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D512718A6070067BD08 /* PassingStats.swift */; };
+		A53A1D542718A6160067BD08 /* RushingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D532718A6160067BD08 /* RushingStats.swift */; };
+		A53A1D562718A6260067BD08 /* ReceivingStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D552718A6260067BD08 /* ReceivingStats.swift */; };
+		A53A1D59271BB3EE0067BD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D57271BB3EE0067BD08 /* Main.storyboard */; };
+		A53A1D5C271CDDDF0067BD08 /* BettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */; };
+		A53A1D5D271CDDDF0067BD08 /* BettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */; };
+		A541E8C2271CEC03008C31A8 /* francophilsans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A541E8C0271CEC03008C31A8 /* francophilsans.ttf */; };
+		A541E8C3271CEC03008C31A8 /* francophilsans-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A541E8C1271CEC03008C31A8 /* francophilsans-bold.ttf */; };
+		A541E8C5271CF782008C31A8 /* BettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8C4271CF782008C31A8 /* BettingViewController.swift */; };
+		A541E8C727222458008C31A8 /* BetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8C627222458008C31A8 /* BetData.swift */; };
+		A541E8C927222467008C31A8 /* BettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8C827222467008C31A8 /* BettingData.swift */; };
+		A541E8CB2722261A008C31A8 /* BettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8CA2722261A008C31A8 /* BettingManager.swift */; };
+		A541E8CF27225FF2008C31A8 /* BetClickedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8CE27225FF2008C31A8 /* BetClickedViewController.swift */; };
+		A541E8D127277E55008C31A8 /* moneyanimation.json in Resources */ = {isa = PBXBuildFile; fileRef = A541E8D027277E54008C31A8 /* moneyanimation.json */; };
+		A541E8D927288D01008C31A8 /* moneyLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = A541E8D827288D01008C31A8 /* moneyLoading.json */; };
+		A541E8DB27310AB5008C31A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8DA27310AB5008C31A8 /* LoginViewController.swift */; };
+		A541E8DD2739E741008C31A8 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8DC2739E741008C31A8 /* LoginPageViewController.swift */; };
+		A541E8DF2739EFCA008C31A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A541E8DE2739EFCA008C31A8 /* GoogleService-Info.plist */; };
+		A541E8E02739EFCB008C31A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A541E8DE2739EFCA008C31A8 /* GoogleService-Info.plist */; };
+		A541E8E12739EFCB008C31A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A541E8DE2739EFCA008C31A8 /* GoogleService-Info.plist */; };
+		A541E8E32739F4C8008C31A8 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */; };
+		A541E8E5273C3726008C31A8 /* BBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E4273C3726008C31A8 /* BBUser.swift */; };
+		A541E8E7273C3799008C31A8 /* UserBet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E6273C3799008C31A8 /* UserBet.swift */; };
+		A5ED9B89276480A000C17308 /* ActiveBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */; };
+		A5ED9B8A276480A000C17308 /* ActiveBetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */; };
+		A5ED9B8C2764810000C17308 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ED9B8B2764810000C17308 /* StatsViewController.swift */; };
+		BBB800E02DBE0C45AAEE287F /* Pods_BrokeBetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEE3B629ECB769170DCC235 /* Pods_BrokeBetTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +87,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41B5E43E784ABE92015E83BD /* Pods-BrokeBetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBetTests.debug.xcconfig"; path = "Target Support Files/Pods-BrokeBetTests/Pods-BrokeBetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		77E389011DE4359150D37866 /* Pods-BrokeBet-BrokeBetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBet-BrokeBetUITests.debug.xcconfig"; path = "Target Support Files/Pods-BrokeBet-BrokeBetUITests/Pods-BrokeBet-BrokeBetUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		860AB8A17223B71C6AB59FE4 /* Pods-BrokeBet-BrokeBetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBet-BrokeBetUITests.release.xcconfig"; path = "Target Support Files/Pods-BrokeBet-BrokeBetUITests/Pods-BrokeBet-BrokeBetUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9BB34CB746E6263A903468E6 /* Pods_BrokeBet_BrokeBetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrokeBet_BrokeBetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D018A6AD9C6512F632120B9 /* Pods-BrokeBet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBet.release.xcconfig"; path = "Target Support Files/Pods-BrokeBet/Pods-BrokeBet.release.xcconfig"; sourceTree = "<group>"; };
+		9DEE3B629ECB769170DCC235 /* Pods_BrokeBetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrokeBetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A156F9B66F2ABC8FA80D67A4 /* Pods-BrokeBet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBet.debug.xcconfig"; path = "Target Support Files/Pods-BrokeBet/Pods-BrokeBet.debug.xcconfig"; sourceTree = "<group>"; };
 		A53A1CE62714C4BA0067BD08 /* BrokeBet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrokeBet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53A1CE92714C4BA0067BD08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A53A1CEB2714C4BA0067BD08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A53A1CED2714C4BA0067BD08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A53A1CF02714C4BA0067BD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A53A1CF22714C4BA0067BD08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A53A1CF52714C4BA0067BD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A53A1CF72714C4BA0067BD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +107,56 @@
 		A53A1D072714C4BA0067BD08 /* BrokeBetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrokeBetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53A1D0B2714C4BA0067BD08 /* BrokeBetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokeBetUITests.swift; sourceTree = "<group>"; };
 		A53A1D0D2714C4BA0067BD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53A1D192714D41A0067BD08 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		A53A1D1B2714ED6E0067BD08 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		A53A1D1D2714F7E00067BD08 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		A53A1D1E2714F7E00067BD08 /* GameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableViewCell.xib; sourceTree = "<group>"; };
+		A53A1D21271506690067BD08 /* MatchupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupData.swift; sourceTree = "<group>"; };
+		A53A1D28271659160067BD08 /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
+		A53A1D2A271747420067BD08 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		A53A1D2B271747420067BD08 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
+		A53A1D2E2717515F0067BD08 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		A53A1D2F2717515F0067BD08 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		A53A1D302717515F0067BD08 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		A53A1D312717515F0067BD08 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		A53A1D322717515F0067BD08 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		A53A1D332717515F0067BD08 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		A53A1D34271751600067BD08 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		A53A1D35271751600067BD08 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		A53A1D36271751600067BD08 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		A53A1D37271751600067BD08 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A53A1D38271751600067BD08 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A53A1D39271751600067BD08 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		A53A1D4727175F5B0067BD08 /* StatsMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsMananger.swift; sourceTree = "<group>"; };
+		A53A1D4927175FF00067BD08 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		A53A1D4B2717D4900067BD08 /* StatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatTableViewCell.swift; sourceTree = "<group>"; };
+		A53A1D4C2717D4900067BD08 /* StatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatTableViewCell.xib; sourceTree = "<group>"; };
+		A53A1D512718A6070067BD08 /* PassingStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassingStats.swift; sourceTree = "<group>"; };
+		A53A1D532718A6160067BD08 /* RushingStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushingStats.swift; sourceTree = "<group>"; };
+		A53A1D552718A6260067BD08 /* ReceivingStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivingStats.swift; sourceTree = "<group>"; };
+		A53A1D58271BB3EE0067BD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTableViewCell.swift; sourceTree = "<group>"; };
+		A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BettingTableViewCell.xib; sourceTree = "<group>"; };
+		A541E8C0271CEC03008C31A8 /* francophilsans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = francophilsans.ttf; sourceTree = "<group>"; };
+		A541E8C1271CEC03008C31A8 /* francophilsans-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "francophilsans-bold.ttf"; sourceTree = "<group>"; };
+		A541E8C4271CF782008C31A8 /* BettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingViewController.swift; sourceTree = "<group>"; };
+		A541E8C627222458008C31A8 /* BetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetData.swift; sourceTree = "<group>"; };
+		A541E8C827222467008C31A8 /* BettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingData.swift; sourceTree = "<group>"; };
+		A541E8CA2722261A008C31A8 /* BettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingManager.swift; sourceTree = "<group>"; };
+		A541E8CE27225FF2008C31A8 /* BetClickedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetClickedViewController.swift; sourceTree = "<group>"; };
+		A541E8D027277E54008C31A8 /* moneyanimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moneyanimation.json; sourceTree = "<group>"; };
+		A541E8D827288D01008C31A8 /* moneyLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moneyLoading.json; sourceTree = "<group>"; };
+		A541E8DA27310AB5008C31A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A541E8DC2739E741008C31A8 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		A541E8DE2739EFCA008C31A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		A541E8E4273C3726008C31A8 /* BBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBUser.swift; sourceTree = "<group>"; };
+		A541E8E6273C3799008C31A8 /* UserBet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBet.swift; sourceTree = "<group>"; };
+		A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveBetTableViewCell.swift; sourceTree = "<group>"; };
+		A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActiveBetTableViewCell.xib; sourceTree = "<group>"; };
+		A5ED9B8B2764810000C17308 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		C3EDBA8174D9EF0A2053B552 /* Pods_BrokeBet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrokeBet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7AA085B3BD8D0D31E6D87D9 /* Pods-BrokeBetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrokeBetTests.release.xcconfig"; path = "Target Support Files/Pods-BrokeBetTests/Pods-BrokeBetTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F321A32E252E3E1CF274407 /* Pods_BrokeBet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB800E02DBE0C45AAEE287F /* Pods_BrokeBetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784568BE10A0FC6EADBEC375 /* Pods_BrokeBet_BrokeBetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +194,8 @@
 				A53A1CFF2714C4BA0067BD08 /* BrokeBetTests */,
 				A53A1D0A2714C4BA0067BD08 /* BrokeBetUITests */,
 				A53A1CE72714C4BA0067BD08 /* Products */,
+				D2C73C1621BA2EA08B4583F7 /* Pods */,
+				E001A2C11F1B6B8E792D2F91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +214,14 @@
 			children = (
 				A53A1CE92714C4BA0067BD08 /* AppDelegate.swift */,
 				A53A1CEB2714C4BA0067BD08 /* SceneDelegate.swift */,
-				A53A1CED2714C4BA0067BD08 /* ViewController.swift */,
-				A53A1CEF2714C4BA0067BD08 /* Main.storyboard */,
+				A53A1D2327153A3E0067BD08 /* Model */,
+				A53A1D2427153A480067BD08 /* View */,
+				A53A1D2527153A4F0067BD08 /* Controller */,
 				A53A1CF22714C4BA0067BD08 /* Assets.xcassets */,
-				A53A1CF42714C4BA0067BD08 /* LaunchScreen.storyboard */,
+				A541E8D827288D01008C31A8 /* moneyLoading.json */,
+				A541E8D027277E54008C31A8 /* moneyanimation.json */,
 				A53A1CF72714C4BA0067BD08 /* Info.plist */,
+				A541E8DE2739EFCA008C31A8 /* GoogleService-Info.plist */,
 			);
 			path = BrokeBet;
 			sourceTree = "<group>";
@@ -128,6 +244,105 @@
 			path = BrokeBetUITests;
 			sourceTree = "<group>";
 		};
+		A53A1D2327153A3E0067BD08 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A53A1D21271506690067BD08 /* MatchupData.swift */,
+				A53A1D1B2714ED6E0067BD08 /* GameData.swift */,
+				A53A1D4927175FF00067BD08 /* PlayerStats.swift */,
+				A53A1D512718A6070067BD08 /* PassingStats.swift */,
+				A53A1D532718A6160067BD08 /* RushingStats.swift */,
+				A53A1D552718A6260067BD08 /* ReceivingStats.swift */,
+				A541E8C627222458008C31A8 /* BetData.swift */,
+				A541E8C827222467008C31A8 /* BettingData.swift */,
+				A541E8E4273C3726008C31A8 /* BBUser.swift */,
+				A541E8E6273C3799008C31A8 /* UserBet.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A53A1D2427153A480067BD08 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A53A1CF42714C4BA0067BD08 /* LaunchScreen.storyboard */,
+				A53A1D1E2714F7E00067BD08 /* GameTableViewCell.xib */,
+				A53A1D1D2714F7E00067BD08 /* GameTableViewCell.swift */,
+				A53A1D57271BB3EE0067BD08 /* Main.storyboard */,
+				A53A1D2A271747420067BD08 /* HeaderTableViewCell.swift */,
+				A53A1D2B271747420067BD08 /* HeaderTableViewCell.xib */,
+				A53A1D46271751660067BD08 /* Fonts */,
+				A53A1D4B2717D4900067BD08 /* StatTableViewCell.swift */,
+				A53A1D4C2717D4900067BD08 /* StatTableViewCell.xib */,
+				A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */,
+				A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */,
+				A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */,
+				A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A53A1D2527153A4F0067BD08 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A53A1D192714D41A0067BD08 /* ScoreManager.swift */,
+				A53A1D4727175F5B0067BD08 /* StatsMananger.swift */,
+				A53A1CED2714C4BA0067BD08 /* ViewController.swift */,
+				A53A1D28271659160067BD08 /* PlayerStatsViewController.swift */,
+				A541E8C4271CF782008C31A8 /* BettingViewController.swift */,
+				A541E8CA2722261A008C31A8 /* BettingManager.swift */,
+				A541E8CE27225FF2008C31A8 /* BetClickedViewController.swift */,
+				A541E8DA27310AB5008C31A8 /* LoginViewController.swift */,
+				A541E8DC2739E741008C31A8 /* LoginPageViewController.swift */,
+				A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */,
+				A5ED9B8B2764810000C17308 /* StatsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A53A1D46271751660067BD08 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A541E8C1271CEC03008C31A8 /* francophilsans-bold.ttf */,
+				A541E8C0271CEC03008C31A8 /* francophilsans.ttf */,
+				A53A1D39271751600067BD08 /* Roboto-Black.ttf */,
+				A53A1D312717515F0067BD08 /* Roboto-BlackItalic.ttf */,
+				A53A1D2E2717515F0067BD08 /* Roboto-Bold.ttf */,
+				A53A1D38271751600067BD08 /* Roboto-BoldItalic.ttf */,
+				A53A1D34271751600067BD08 /* Roboto-Italic.ttf */,
+				A53A1D2F2717515F0067BD08 /* Roboto-Light.ttf */,
+				A53A1D36271751600067BD08 /* Roboto-LightItalic.ttf */,
+				A53A1D35271751600067BD08 /* Roboto-Medium.ttf */,
+				A53A1D37271751600067BD08 /* Roboto-MediumItalic.ttf */,
+				A53A1D322717515F0067BD08 /* Roboto-Regular.ttf */,
+				A53A1D332717515F0067BD08 /* Roboto-Thin.ttf */,
+				A53A1D302717515F0067BD08 /* Roboto-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D2C73C1621BA2EA08B4583F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A156F9B66F2ABC8FA80D67A4 /* Pods-BrokeBet.debug.xcconfig */,
+				9D018A6AD9C6512F632120B9 /* Pods-BrokeBet.release.xcconfig */,
+				77E389011DE4359150D37866 /* Pods-BrokeBet-BrokeBetUITests.debug.xcconfig */,
+				860AB8A17223B71C6AB59FE4 /* Pods-BrokeBet-BrokeBetUITests.release.xcconfig */,
+				41B5E43E784ABE92015E83BD /* Pods-BrokeBetTests.debug.xcconfig */,
+				E7AA085B3BD8D0D31E6D87D9 /* Pods-BrokeBetTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E001A2C11F1B6B8E792D2F91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3EDBA8174D9EF0A2053B552 /* Pods_BrokeBet.framework */,
+				9BB34CB746E6263A903468E6 /* Pods_BrokeBet_BrokeBetUITests.framework */,
+				9DEE3B629ECB769170DCC235 /* Pods_BrokeBetTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +350,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A53A1D102714C4BA0067BD08 /* Build configuration list for PBXNativeTarget "BrokeBet" */;
 			buildPhases = (
+				A4E1C1D88F5694EDD0970E8A /* [CP] Check Pods Manifest.lock */,
 				A53A1CE22714C4BA0067BD08 /* Sources */,
 				A53A1CE32714C4BA0067BD08 /* Frameworks */,
 				A53A1CE42714C4BA0067BD08 /* Resources */,
+				42BDBAD9DA778CEBB2145E85 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +369,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A53A1D132714C4BA0067BD08 /* Build configuration list for PBXNativeTarget "BrokeBetTests" */;
 			buildPhases = (
+				C5D925B28FC72D2D1A27FCC6 /* [CP] Check Pods Manifest.lock */,
 				A53A1CF82714C4BA0067BD08 /* Sources */,
 				A53A1CF92714C4BA0067BD08 /* Frameworks */,
 				A53A1CFA2714C4BA0067BD08 /* Resources */,
@@ -170,9 +388,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A53A1D162714C4BA0067BD08 /* Build configuration list for PBXNativeTarget "BrokeBetUITests" */;
 			buildPhases = (
+				96CDDC23EA26DC81C1B9E0E1 /* [CP] Check Pods Manifest.lock */,
 				A53A1D032714C4BA0067BD08 /* Sources */,
 				A53A1D042714C4BA0067BD08 /* Frameworks */,
 				A53A1D052714C4BA0067BD08 /* Resources */,
+				EF4DC95A90686E7D75E886AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,9 +451,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53A1D41271751600067BD08 /* Roboto-Medium.ttf in Resources */,
+				A53A1D43271751600067BD08 /* Roboto-MediumItalic.ttf in Resources */,
 				A53A1CF62714C4BA0067BD08 /* LaunchScreen.storyboard in Resources */,
+				A53A1D42271751600067BD08 /* Roboto-LightItalic.ttf in Resources */,
+				A53A1D40271751600067BD08 /* Roboto-Italic.ttf in Resources */,
+				A5ED9B8A276480A000C17308 /* ActiveBetTableViewCell.xib in Resources */,
+				A53A1D45271751600067BD08 /* Roboto-Black.ttf in Resources */,
+				A541E8D127277E55008C31A8 /* moneyanimation.json in Resources */,
 				A53A1CF32714C4BA0067BD08 /* Assets.xcassets in Resources */,
-				A53A1CF12714C4BA0067BD08 /* Main.storyboard in Resources */,
+				A53A1D5D271CDDDF0067BD08 /* BettingTableViewCell.xib in Resources */,
+				A53A1D3E271751600067BD08 /* Roboto-Regular.ttf in Resources */,
+				A53A1D3A271751600067BD08 /* Roboto-Bold.ttf in Resources */,
+				A53A1D3F271751600067BD08 /* Roboto-Thin.ttf in Resources */,
+				A53A1D44271751600067BD08 /* Roboto-BoldItalic.ttf in Resources */,
+				A53A1D3D271751600067BD08 /* Roboto-BlackItalic.ttf in Resources */,
+				A541E8C2271CEC03008C31A8 /* francophilsans.ttf in Resources */,
+				A541E8D927288D01008C31A8 /* moneyLoading.json in Resources */,
+				A541E8DF2739EFCA008C31A8 /* GoogleService-Info.plist in Resources */,
+				A541E8C3271CEC03008C31A8 /* francophilsans-bold.ttf in Resources */,
+				A53A1D3C271751600067BD08 /* Roboto-ThinItalic.ttf in Resources */,
+				A53A1D3B271751600067BD08 /* Roboto-Light.ttf in Resources */,
+				A53A1D4E2717D4900067BD08 /* StatTableViewCell.xib in Resources */,
+				A53A1D59271BB3EE0067BD08 /* Main.storyboard in Resources */,
+				A53A1D2D271747420067BD08 /* HeaderTableViewCell.xib in Resources */,
+				A53A1D202714F7E00067BD08 /* GameTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A541E8E02739EFCB008C31A8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,19 +491,148 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A541E8E12739EFCB008C31A8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42BDBAD9DA778CEBB2145E85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrokeBet/Pods-BrokeBet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrokeBet/Pods-BrokeBet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BrokeBet/Pods-BrokeBet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96CDDC23EA26DC81C1B9E0E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrokeBet-BrokeBetUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E1C1D88F5694EDD0970E8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrokeBet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5D925B28FC72D2D1A27FCC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrokeBetTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF4DC95A90686E7D75E886AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrokeBet-BrokeBetUITests/Pods-BrokeBet-BrokeBetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrokeBet-BrokeBetUITests/Pods-BrokeBet-BrokeBetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BrokeBet-BrokeBetUITests/Pods-BrokeBet-BrokeBetUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A53A1CE22714C4BA0067BD08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A541E8C927222467008C31A8 /* BettingData.swift in Sources */,
+				A53A1D1A2714D41B0067BD08 /* ScoreManager.swift in Sources */,
+				A53A1D4D2717D4900067BD08 /* StatTableViewCell.swift in Sources */,
+				A541E8E5273C3726008C31A8 /* BBUser.swift in Sources */,
+				A53A1D2C271747420067BD08 /* HeaderTableViewCell.swift in Sources */,
+				A53A1D1C2714ED6E0067BD08 /* GameData.swift in Sources */,
+				A53A1D562718A6260067BD08 /* ReceivingStats.swift in Sources */,
+				A53A1D5C271CDDDF0067BD08 /* BettingTableViewCell.swift in Sources */,
+				A53A1D522718A6070067BD08 /* PassingStats.swift in Sources */,
+				A541E8E32739F4C8008C31A8 /* RegisterPageViewController.swift in Sources */,
 				A53A1CEE2714C4BA0067BD08 /* ViewController.swift in Sources */,
+				A53A1D4827175F5B0067BD08 /* StatsMananger.swift in Sources */,
+				A541E8DB27310AB5008C31A8 /* LoginViewController.swift in Sources */,
+				A541E8C727222458008C31A8 /* BetData.swift in Sources */,
 				A53A1CEA2714C4BA0067BD08 /* AppDelegate.swift in Sources */,
+				A53A1D22271506690067BD08 /* MatchupData.swift in Sources */,
+				A5ED9B89276480A000C17308 /* ActiveBetTableViewCell.swift in Sources */,
+				A541E8C5271CF782008C31A8 /* BettingViewController.swift in Sources */,
+				A5ED9B8C2764810000C17308 /* StatsViewController.swift in Sources */,
+				A53A1D29271659160067BD08 /* PlayerStatsViewController.swift in Sources */,
+				A53A1D542718A6160067BD08 /* RushingStats.swift in Sources */,
 				A53A1CEC2714C4BA0067BD08 /* SceneDelegate.swift in Sources */,
+				A541E8E7273C3799008C31A8 /* UserBet.swift in Sources */,
+				A541E8CF27225FF2008C31A8 /* BetClickedViewController.swift in Sources */,
+				A53A1D4A27175FF00067BD08 /* PlayerStats.swift in Sources */,
+				A53A1D1F2714F7E00067BD08 /* GameTableViewCell.swift in Sources */,
+				A541E8DD2739E741008C31A8 /* LoginPageViewController.swift in Sources */,
+				A541E8CB2722261A008C31A8 /* BettingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,20 +668,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A53A1CEF2714C4BA0067BD08 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A53A1CF02714C4BA0067BD08 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A53A1CF42714C4BA0067BD08 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A53A1CF52714C4BA0067BD08 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A53A1D57271BB3EE0067BD08 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A53A1D58271BB3EE0067BD08 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -433,6 +805,7 @@
 		};
 		A53A1D112714C4BA0067BD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A156F9B66F2ABC8FA80D67A4 /* Pods-BrokeBet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +825,7 @@
 		};
 		A53A1D122714C4BA0067BD08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D018A6AD9C6512F632120B9 /* Pods-BrokeBet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +845,7 @@
 		};
 		A53A1D142714C4BA0067BD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41B5E43E784ABE92015E83BD /* Pods-BrokeBetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +868,7 @@
 		};
 		A53A1D152714C4BA0067BD08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7AA085B3BD8D0D31E6D87D9 /* Pods-BrokeBetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +891,7 @@
 		};
 		A53A1D172714C4BA0067BD08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77E389011DE4359150D37866 /* Pods-BrokeBet-BrokeBetUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +912,7 @@
 		};
 		A53A1D182714C4BA0067BD08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 860AB8A17223B71C6AB59FE4 /* Pods-BrokeBet-BrokeBetUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
