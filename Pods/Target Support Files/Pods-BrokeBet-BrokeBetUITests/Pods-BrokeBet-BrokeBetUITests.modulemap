@@ -1,0 +1,6 @@
+framework module Pods_BrokeBet_BrokeBetUITests {
+  umbrella header "Pods-BrokeBet-BrokeBetUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_BrokeBet {
+  umbrella header "Pods-BrokeBet-umbrella.h"
+
+  export *
+  module * { export * }
+}
