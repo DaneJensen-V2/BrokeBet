@@ -10,13 +10,21 @@ import BottomHalfModal
 import CurrencyTextField
 import Lottie
 import Firebase
-
+var teamBetOn = ""
+var awayTeamAbbrv = ""
+var homeTeamAbbrv = ""
+var creatingParlay = false
+var currentParlay = [UserBet]()
+var parlayComponents = [parlayComponent]()
+var firstClick = true
 class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
     var titleText = ""
     var teamNameText = ""
     var spread = ""
     var betType = ""
     var odds = ""
+   
+    
     let db = Firestore.firestore()
 
     
@@ -32,10 +40,12 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
     @IBOutlet weak var placeBetButton: UIButton!
     @IBOutlet weak var typeOfBetLabel: UILabel!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var parlayButton: UIButton!
     var sheetContentHeightToModify: CGFloat = 800
     var buttonPressed = false
 
     override func viewDidLoad() {
+        parlayButton.layer.cornerRadius = 12
         super.viewDidLoad()
         bottomView.layer.cornerRadius = 30
         placeBetButton.layer.cornerRadius = 12
@@ -78,6 +88,7 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
 
         }
     }
+    
     func calculatePayout(betAmount : Int, spread : String) -> Int{
         let betAmountDouble  = Double(betAmount)
         let spreadInt: Double? = Double(spread)
@@ -96,7 +107,24 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
         }
     }
     
-     @IBAction func placeBetPushed(_ sender: UIButton) {
+    @IBAction func createParlayClicked(_ sender: UIButton) {
+        creatingParlay = true
+        self.dismiss(animated: true, completion: nil)
+    
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+
+        let newParlay = parlayComponent(teamID: teamIDClicked, typeOfBet: self.typeOfBetLabel.text!, odds: self.spreadOverText.text!, betGameID: activeGames[buttonIndex[0]].gameID, spread: self.oddsLabel.text!, outcome: "In Progress", homeAbbrv: homeTeamAbbrv, awayAbbrv: awayTeamAbbrv, teamBetOn: self.teamNameText)
+        
+        parlayComponents.append(newParlay)
+        print(buttonIndex)
+        tableData[buttonIndex[0]].selectedButtons[buttonIndex[1]] = true
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "parlay"), object: nil)
+        firstClick = false
+
+    }
+    @IBAction func placeBetPushed(_ sender: UIButton) {
         
         
         var betAmountString = textField.text
@@ -153,7 +181,8 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
                     
                     let potentialPayout = self.calculatePayout(betAmount: betAmountInt, spread: self.spreadOverText.text!)
 
-                    let newBet : UserBet = UserBet(amountBet: betAmountInt, potentialPayout: potentialPayout, teamID: teamIDClicked, typeOfBet: self.typeOfBetLabel.text!, odds: self.spreadOverText.text!, betPlaced: currentDate, weekPlaced: currentWeek, betGameID: gameIDclicked, spread: self.oddsLabel.text!, outcome: "In Progress")
+                   
+                    let newBet = UserBet(identifier: UUID().uuidString, isParlay: false, amountBet: betAmountInt, potentialPayout: potentialPayout, outcome: "In Progress", betPlaced: currentDate, weekPlaced: currentWeek, odds: self.spreadOverText.text!, teamID: teamIDClicked, typeOfBet: self.typeOfBetLabel.text!, betGameID: gameIDclicked, spread: self.oddsLabel.text!, homeAbbrv: homeTeamAbbrv, awayAbbrv: awayTeamAbbrv, teamBetOn: self.teamNameText, parlayComponents: [])
                     
                     let encoded: [String: Any]
                             do {
@@ -176,6 +205,8 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
                             print("Error updating document: \(err)")
                         } else {
                             print("Document successfully updated")
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateStats"), object: nil)
+
                         }
                     }
                     

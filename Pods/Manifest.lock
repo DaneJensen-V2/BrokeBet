@@ -219,6 +219,10 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - BottomHalfModal (1.1.1)
+  - Charts (4.0.3):
+    - Charts/Core (= 4.0.3)
+  - Charts/Core (4.0.3):
+    - SwiftAlgorithms (~> 1.0)
   - CurrencyTextField (2.3)
   - Firebase/Auth (6.34.0):
     - Firebase/CoreOnly
@@ -307,21 +311,26 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
+  - SnapKit (5.6.0)
+  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
   - BottomHalfModal
+  - Charts
   - CurrencyTextField
   - Firebase/Auth
   - Firebase/Firestore
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
   - lottie-ios
+  - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
     - BottomHalfModal
+    - Charts
     - CurrencyTextField
     - Firebase
     - FirebaseAuth
@@ -339,11 +348,14 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - PromisesObjC
+    - SnapKit
+    - SwiftAlgorithms
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   BottomHalfModal: eb45e44ee80345e50da8c51667ff9170545a560b
+  Charts: d959d6723c8eedfdd0735dfc28cb0a71762ac4d9
   CurrencyTextField: 75d8ee80cf245925684b34c9a49ba886f258e2dc
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
@@ -361,7 +373,9 @@ SPEC CHECKSUMS:
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 5d599e775434aaa618f966148f3b1da98cd884f1
+PODFILE CHECKSUM: a84c9b4ff7fe83cfba75ae584caebd14ba983aef
 
 COCOAPODS: 1.11.2

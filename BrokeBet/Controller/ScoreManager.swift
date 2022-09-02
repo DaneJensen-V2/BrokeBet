@@ -15,36 +15,46 @@ var currentWeek = 0
 var totalEvents = 13
 struct footballMatch{
     
-    var gameURL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2020&seasontype=2&week=5"
+    var gameURL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2021&seasontype=2&week=3"
 
-    
+    func performRequest(urlString : String, completion: @escaping (Bool) -> Void){
+    print("Performing request")
+        print(urlString)
 
-func performRequest(urlString : String){
-    
-    
-        if let url = URL(string: urlString){
-        
+    if let url = URL(string: urlString){
         let session = URLSession(configuration: .default)
         
-       let task =  session.dataTask(with: url, completionHandler: handle(data:response:error:))
+        let task = session.dataTask(with: url) { data, response, error in
+            handle(data: data, response: response, error: error){success in
+                print("Completion Ran")
+                completion(true)
+            }
+        }
         
         task.resume()
     }
     
 }
 
-func handle(data: Data?, response: URLResponse?, error:  Error?){
-    
+    func handle(data: Data?, response: URLResponse?, error:  Error?, completion: @escaping (Bool) -> Void){
+        print("Handling Data")
+
     if error != nil {
         print(error!)
+        completion(false)
         return
     }
     if let safeData = data {
-        self.parseJSON(safeData: safeData)
+        self.parseJSON(safeData: safeData){success in
+            completion(true)
+            
+        }
 
     }
 }
-    func parseJSON(safeData : Data){
+    func parseJSON(safeData : Data, completion: @escaping (Bool) -> Void){
+        print("Parsing JSON")
+
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(GameData.self, from: safeData)
@@ -104,9 +114,7 @@ func handle(data: Data?, response: URLResponse?, error:  Error?){
             let homeColor = decodedData.events[index].competitions[0].competitors[0].team.color
             let awayColor = decodedData.events[index].competitions[0].competitors[1].team.color
                 
-            //let homeLogoString = decodedData.events[index].competitions[0].competitors[0].team.logo
-          //  let awayLogoString = decodedData.events[index].competitions[0].competitors[1].team.logo
-                
+    
               
                 
                 let awayImage = UIImage(named: awayTeam)
@@ -118,11 +126,12 @@ func handle(data: Data?, response: URLResponse?, error:  Error?){
                 let game = MatchupData(awayTeam: awayTeam, awayTeamLong: awayTeamLong, awayScore: awayScore, awayLogo: awayImage, awayColor : awayColor, awayRecord: awayRecord, awayPassers: [], awayRushers: [], awayReceivers: [], homeTeam: homeTeam, homeTeamLong: homeTeamLong, homeScore: homeScore, homeLogo: homeImage!, homeColor : homeColor, homeRecord: homeRecord, homePassers: [], homeRushers: [], homeReceivers: [], gameID: gameID, Quarter: quarter, currentTime: clock, date: date, datePrint: dateBetting, gameStatus: gameStatus, bettingData: bet, gameList: currentGameList)
             
                 currentGameList.append(game)
-
             }
+            completion(true)
         }
         catch{
         print(error)
+            completion(false)
         }
     }
 }

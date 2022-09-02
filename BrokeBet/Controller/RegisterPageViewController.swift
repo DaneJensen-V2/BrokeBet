@@ -80,7 +80,7 @@ class RegisterPageViewController: UIViewController, SheetContentHeightModifiable
                     signedIn = true
                     let user = Auth.auth().currentUser
 
-                    let newUser = BBUser(UserID: user!.uid, firstName: self.firstNameText.text!, lastName: self.lastNameText.text!, currentBalance: 1000, activeBets: [], allBets: [], Bets: 0, Won: 0, Lost: 0, Earned: 0)
+                    let newUser = BBUser(UserID: user!.uid, firstName: self.firstNameText.text!, lastName: self.lastNameText.text!, currentBalance: 1000, activeBets: [], closedBets: [], Bets: 0, Won: 0, Lost: 0, Earned: 0)
                      
                     self.addNewUser(newUser: newUser)
                     currentUser = newUser

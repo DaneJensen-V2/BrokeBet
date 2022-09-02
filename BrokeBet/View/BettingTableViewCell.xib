@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -236,6 +237,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" constant="432" id="0Rz-JE-VBs"/>
+                            <constraint firstItem="5yf-EM-C2b" firstAttribute="leading" secondItem="hU6-cV-LDX" secondAttribute="leading" id="8zb-Vd-iPM"/>
                             <constraint firstItem="9Sq-cW-PRu" firstAttribute="leading" secondItem="cP5-oh-qVC" secondAttribute="trailing" constant="5" id="9tV-iA-to9"/>
                             <constraint firstItem="cP5-oh-qVC" firstAttribute="leading" secondItem="9T0-id-3VM" secondAttribute="trailing" constant="5" id="CbQ-nd-Q7c"/>
                             <constraint firstAttribute="height" constant="55" id="J0j-pq-Dkk"/>

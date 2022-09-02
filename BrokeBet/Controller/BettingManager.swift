@@ -11,32 +11,41 @@ import UIKit
 
 struct Betting{
     
-func performRequest(urlString : String){
+    func performRequest(urlString : String, count : Int, completion: @escaping (Bool) -> Void){
     
-    
-        if let url = URL(string: urlString){
+    if let url = URL(string: urlString){
         
         let session = URLSession(configuration: .default)
         
-        let task =  session.dataTask(with: url, completionHandler: handle(data:response:error:))
+        let task = session.dataTask(with: url) { data, response, error in
+            handle(data: data, response: response, error: error, count: count){success in
+                print("Completion Ran")
+                completion(true)
+            }
+        }
         
         task.resume()
     }
     
 }
 
-func handle(data: Data?, response: URLResponse?, error:  Error?){
+    func handle(data: Data?, response: URLResponse?, error:  Error?, count: Int, completion: @escaping (Bool) -> Void){
     
     if error != nil {
+        print("UH OH")
         print(error!)
+        completion(false)
         return
     }
     if let safeData = data {
-        self.parseJSON(safeData: safeData)
+        self.parseJSON(safeData: safeData, count: count){success in
+            completion(true)
+            
+        }
 
     }
 }
-    func parseJSON(safeData : Data){
+    func parseJSON(safeData : Data, count: Int, completion: @escaping (Bool) -> Void){
         let decoder = JSONDecoder()
         do {
             var homeSpread : Double;
@@ -61,6 +70,7 @@ func handle(data: Data?, response: URLResponse?, error:  Error?){
                  homeSpread = spread
                  awaySpread = spread * -1
             }
+            print(awaySpread)
 
             let homeMoneyLine = decodedData.pickcenter[0].homeTeamOdds.moneyLine
             let awayMoneyLine = decodedData.pickcenter[0].awayTeamOdds.moneyLine
@@ -71,19 +81,16 @@ func handle(data: Data?, response: URLResponse?, error:  Error?){
             let bet = BetData(homeSpread: homeSpread, awaySpread: awaySpread, spreadOddsAway: awaySpreadOdds, overUnder: overUnder, spreadOddsHome: homeSpreadOdds, moneyLineHome: homeMoneyLine, moneyLineAway: awayMoneyLine)
             
 
-            currentGameList[runNumber2].bettingData = bet
-            runNumber2 += 1
-            print("Run Number : ")
-            print(runNumber2)
-            print(awayMoneyLine)
-            print(homeMoneyLine)
+            currentGameList[count].bettingData = bet
+            
 
-            requestDone = true
 
         }
         catch{
+            completion(false)
         print(error)
         }
+        completion(true)
 
     }
 }

@@ -12,7 +12,7 @@ struct BBUser : Codable{
     let lastName : String
     var currentBalance : Int
     var activeBets : [UserBet]
-    var allBets : [UserBet]
+    var closedBets : [UserBet]
     var Bets : Int
     var Won : Int
     var Lost : Int
@@ -25,7 +25,7 @@ enum CodingKeys: String, CodingKey {
        case lastName
        case currentBalance
        case activeBets = "Active Bets"
-       case allBets = "All Bets"
+       case closedBets = "Closed Bets"
         case Bets
     case Won
     case Lost

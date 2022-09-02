@@ -42,3 +42,19 @@ struct MatchupData {
     var gameList : [MatchupData]
     
 }
+struct betDataForTable{
+    var title : String
+    var date : String
+    var homeTeamImage : UIImage
+    var awayTeamImage : UIImage
+    var awayTeamName : String
+    var homeTeamName : String
+    var spreadAway : String
+    var moneyAway : String
+    var totalAway : String
+    var spreadHome : String
+    var moneyHome : String
+    var totalHome : String
+    
+    var selectedButtons = [false, false, false, false, false, false]
+}

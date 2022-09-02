@@ -46,7 +46,6 @@ struct records : Decodable {
 }
 struct team : Decodable {
     let abbreviation : String
-    let logo : String
     let color : String
 //    let name : String
     let shortDisplayName : String

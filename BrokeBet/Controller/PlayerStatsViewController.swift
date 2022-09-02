@@ -40,6 +40,8 @@ class PlayerStatsViewController: UIViewController, UITableViewDelegate {
         statsTable.delegate = self
         statsTable.dataSource = self
 
+        self.title = currentGame.awayTeam + " @ " + currentGame.homeTeam
+        
         
         let awayTeamName = currentGameList[rowSelected].awayTeam
         
