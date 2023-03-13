@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="francophilsans-bold.ttf">
+            <string>FrancophilSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="bettingTableHeader" customModule="BrokeBet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NFL-Logo" translatesAutoresizingMaskIntoConstraints="NO" id="vff-aE-NYp">
+                    <rect key="frame" x="20" y="5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="7Ic-XO-eyn"/>
+                        <constraint firstAttribute="height" constant="40" id="Ra2-xW-Xge"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-aK-JiD">
+                    <rect key="frame" x="68" y="13.666666666666664" width="30.666666666666671" height="23"/>
+                    <fontDescription key="fontDescription" name="FrancophilSans-Bold" family="FrancophilSans" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vag-SR-rPm">
+                    <rect key="frame" x="340" y="15.333333333333332" width="25" height="25"/>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="hSM-HV-9tO"/>
+                        <constraint firstAttribute="height" constant="30" id="mtb-fs-P3W"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vff-aE-NYp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="26Y-LP-x3G"/>
+                <constraint firstItem="vff-aE-NYp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Na8-iN-QCc"/>
+                <constraint firstItem="Uyd-aK-JiD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YTH-qo-V6h"/>
+                <constraint firstAttribute="trailing" secondItem="vag-SR-rPm" secondAttribute="trailing" constant="20" id="ozW-TH-83m"/>
+                <constraint firstItem="vag-SR-rPm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yF4-TG-Yz9"/>
+                <constraint firstItem="Uyd-aK-JiD" firstAttribute="leading" secondItem="vff-aE-NYp" secondAttribute="trailing" constant="8" symbolic="YES" id="ydV-Ht-UdR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrowImage" destination="vag-SR-rPm" id="AqG-BE-nbp"/>
+                <outlet property="leagueImage" destination="vff-aE-NYp" id="6wj-3U-S6v"/>
+                <outlet property="leagueLabel" destination="Uyd-aK-JiD" id="WnB-zS-utF"/>
+            </connections>
+            <point key="canvasLocation" x="-18.46153846153846" y="-11.374407582938389"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NFL-Logo" width="2000" height="2633"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

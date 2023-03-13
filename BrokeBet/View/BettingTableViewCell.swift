@@ -9,15 +9,24 @@ import UIKit
 import BottomHalfModal
 var gameIDclicked = ""
 var teamIDClicked = ""
-var buttonIndex = [0,0]
+var buttonRef : UIButton?
+var buttonIndex = [0,0,0]
+var currentGame : MatchupData?
+private var shadowLayer: CAShapeLayer!
+var nameToAbbrv: [String: String] = ["Cardinals":"ARI", "Falcons": "ATL", "Ravens" : "BAL", "Bills" : "BUF", "Panthers" : "CAR", "Bears": "CHI", "Bengals" : "CIN", "Browns" : "CLE", "Cowboys" : "DAL", "Broncos" : "DEN", "Lions" : "DET", "Packers": "GB", "Texans" : "HOU", "Colts" : "IND", "Jaguars" : "JAX", "Chiefs" : "KC", "Chargers" : "LAC", "Rams" : "LAR", "Raiders" : "LV", "Dolphins" : "MIA", "Vikings" : "MIN", "Patriots" : "NE", "Saints" : "NO", "Giants" : "NYG", "Jets" : "NYG", "Eagles" : "PHI", "Steelers" : "PIT", "Seahawks" : "SEA", "49ers" : "SF", "Buccaneers" : "TB", "Titans" : "TEN", "Washington" : "WSH"]
+
+
+
 class BettingTableViewCell: UITableViewCell {
     var index = 0
+    var section = 0
     var selectedButtons = [false, false, false, false, false, false]
     @IBOutlet weak var gameID: UILabel!
     @IBOutlet weak var spreadAway: UIButton!
     @IBOutlet weak var totalAway: UIButton!
     @IBOutlet weak var moneyHome: UIButton!
     
+    @IBOutlet weak var cellBG: UIView!
     @IBOutlet weak var spreadHome: UIButton!
     @IBOutlet weak var totalHome: UIButton!
     @IBOutlet weak var awayTeamName: UILabel!
@@ -27,342 +36,215 @@ class BettingTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var homeTeamImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        print("Awake from nib")
+
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 3, bottom: 0, right: 30))
+
+        shadowLayer = CAShapeLayer()
+      
+        shadowLayer.path = UIBezierPath(roundedRect: contentView.frame, cornerRadius: 10).cgPath
+     shadowLayer.fillColor = UIColor.clear.cgColor
+
+        shadowLayer.shadowColor = UIColor.black.cgColor
+        shadowLayer.shadowPath = shadowLayer.path
+        shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        shadowLayer.shadowOpacity = 0.2
+        shadowLayer.shadowRadius = 3
+
+        layer.insertSublayer(shadowLayer, at: 0)
     }
-    var nameToAbbrv: [String: String] = ["Cardinals":"ARI", "Falcons": "ATL", "Ravens" : "BAL", "Bills" : "BUF", "Panthers" : "CAR", "Bears": "CHI", "Bengals" : "CIN", "Browns" : "CLE", "Cowboys" : "DAL", "Broncos" : "DEN", "Lions" : "DET", "Packers": "GB", "Texans" : "HOU", "Colts" : "IND", "Jacksonville" : "JAX", "Chiefs" : "KC", "Chargers" : "LAC", "Rams" : "LAR", "Raiders" : "LV", "Dolphins" : "MIA", "Vikings" : "MIN", "Patriots" : "NE", "Saints" : "NO", "Giants" : "NYG", "Jets" : "NYG", "Eagles" : "PHI", "Steelers" : "PIT", "Seahawks" : "SEA", "49ers" : "SF", "Buccaneers" : "TB", "Titans" : "TEN", "Washington" : "WSH"]
+
 
 
     override func setSelected(_ selected: Bool, animated: Bool) { 
-        super.setSelected(selected, animated: animated)
+        super.setSelected(selected, animated: false)
         
-        spreadAway.layer.borderWidth = 1.5
-        spreadAway.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+   
+        spreadAway.layer.cornerRadius = 5
         
-        totalAway.layer.borderWidth = 1.5
-        totalAway.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+        totalAway.layer.cornerRadius = 5
         
-        moneyAway.layer.borderWidth = 1.5
-        moneyAway.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+        moneyAway.layer.cornerRadius = 5
         
-        spreadHome.layer.borderWidth = 1.5
-        spreadHome.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+        spreadHome.layer.cornerRadius = 5
         
-        totalHome.layer.borderWidth = 1.5
-        totalHome.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+        totalHome.layer.cornerRadius = 5
         
-        moneyHome.layer.borderWidth = 1.5
-        moneyHome.layer.borderColor = UIColor(named: "darkGreen")?.cgColor
+        moneyHome.layer.cornerRadius = 5
         
-        
+        cellBG.layer.cornerRadius = 10
 
-        // Configure the view for the selected state
     }
     
-    @IBAction func spreadAwayPushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 0]
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print("Layout Subviews")
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+
+       
+    }
+    @IBAction func spreadAway(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 0, section]
         teamIDClicked = "Away"
-        var spread = ""
+        let betType = "Spread"
         var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
+        var spread = ""
+        if let firstLine = selectedGame.spreadAway.components(separatedBy: CharacterSet.newlines).first {
+            spread = firstLine
+        }
+        if let secondLine = selectedGame.spreadAway.components(separatedBy: CharacterSet.newlines).last {
+            odds = secondLine
+        }
+        let teamName = selectedGame.awayTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    
+    @IBAction func moneylineAway(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 1, section]
+        teamIDClicked = "Away"
+        let betType = "Moneyline"
+        let odds = selectedGame.moneyAway
+        let spread = selectedGame.moneyAway
+        let teamName = selectedGame.awayTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    
+    @IBAction func totalAway(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 2, section]
+        teamIDClicked = "Away"
+        let betType = "Over/Under"
+        var odds = ""
+        var spread = ""
+        if let firstLine = selectedGame.totalAway.components(separatedBy: CharacterSet.newlines).first {
+            spread = firstLine
+        }
+        if let secondLine = selectedGame.totalAway.components(separatedBy: CharacterSet.newlines).last {
+            odds = secondLine
+        }
+        let teamName = selectedGame.awayTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    @IBAction func spreadHome(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 3, section]
+        let betType = "Spread"
+        teamIDClicked = "Home"
+        var odds = ""
+        var spread = ""
+        if let firstLine = selectedGame.spreadHome.components(separatedBy: CharacterSet.newlines).first {
+            spread = firstLine
+        }
+        if let secondLine = selectedGame.spreadHome.components(separatedBy: CharacterSet.newlines).last {
+            odds = secondLine
+        }
+        let teamName = selectedGame.homeTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    @IBAction func moneylineHome(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 4, section]
+        teamIDClicked = "Home"
+        let betType = "Moneyline"
+        let odds = selectedGame.moneyHome
+        let spread = selectedGame.moneyHome
+        let teamName = selectedGame.homeTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    @IBAction func totalHome(_ sender: UIButton) {
+        let selectedGame = tableData[section][index]
+        buttonIndex = [index, 5, section]
+        let betType = "Over/Under"
+        teamIDClicked = "Home"
+        var odds = ""
+        var spread = ""
+        if let firstLine = selectedGame.totalHome.components(separatedBy: CharacterSet.newlines).first {
+            spread = firstLine
+        }
+        if let secondLine = selectedGame.totalHome.components(separatedBy: CharacterSet.newlines).last {
+            odds = secondLine
+        }
+        let teamName = selectedGame.homeTeamName
+        buttonClicked(betType: betType, odds: odds, spread: spread, teamName: teamName, sender : sender)
+    }
+    
+    func buttonClicked(betType : String, odds : String, spread : String, teamName : String, sender: UIButton){
+        print("Section: \(section)")
+        print("Index: \(index)")
+
+        if !creatingParlay{
+        UIView.animate(withDuration: 0.3) {
+            buttonRef = sender
+            sender.backgroundColor = UIColor(named: "darkerGreen")
+            }
+        }
+        currentGame = activeGames[section][index]
+        
         awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
         homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
         
-        
-        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+        let impactMed = UIImpactFeedbackGenerator(style: .light)
             impactMed.impactOccurred()
+        
+        if creatingParlay{
+            parlay(typeOfBet: betType, odds: odds, spread: spread, sender: sender)
+        }
+        else{
+            showVC(betType: betType, odds: odds, spread: spread, teamName: teamName)
+        }
+    }
+    func showVC(betType : String, odds : String, spread : String, teamName : String){
+        let selectedGame = tableData[section][index]
         let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
     
-        vc.titleText = title.text!
-        vc.betType = "Spread"
-        if let firstLine = spreadAway.currentTitle!.components(separatedBy: CharacterSet.newlines).first {
-            vc.spread = firstLine
-            spread = firstLine
-        }
-        if let secondLine = spreadAway.currentTitle!.components(separatedBy: CharacterSet.newlines).last {
-            vc.odds = secondLine
-            odds = secondLine
-        }
-        vc.teamNameText = awayTeamName.text!
-      //  vc.teamName!.text = awayTeamName.text
-        gameIDclicked = gameID.text!
         
-        if creatingParlay {
-            if spreadAway.backgroundColor == UIColor(named: "darkerGreen"){
-                print("test")
+        
+        vc.titleText = selectedGame.title
+        vc.betType = betType
+        vc.teamNameText = teamName
+        vc.odds = odds
+        vc.spread = spread
+        self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
 
-                spreadAway.backgroundColor = UIColor(named: "lightGreen")
-                print(activeGames[index].gameID)
-                print(teamIDClicked)
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Spread", teamID: teamIDClicked)
-                tableData[index].selectedButtons[0] = false
-            }
-            else{
-                spreadAway.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Spread", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[0] = true
-
-            }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
     }
-    @IBAction func moneyAwayPushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 1]
-        teamIDClicked = "Away"
-        var spread = ""
-        var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
-        awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
-        homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
-
-        //    print(spreadAway.currentTitle)
-            let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                impactMed.impactOccurred()
-            let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
-        
-            vc.titleText = title.text!
-            vc.betType = "Moneyline"
-            vc.odds = moneyAway.currentTitle!
-            odds = moneyAway.currentTitle!
-            vc.spread = moneyAway.currentTitle!
-           spread = moneyAway.currentTitle!
-            vc.teamNameText = awayTeamName.text!
-          //  vc.teamName!.text = awayTeamName.text
-        gameIDclicked = gameID.text!
-
-        if creatingParlay {
-            if moneyAway.backgroundColor == UIColor(named: "darkerGreen"){
-
-                moneyAway.backgroundColor = UIColor(named: "lightGreen")
-                print(activeGames[index].gameID)
-                print(teamIDClicked)
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Moneyline", teamID: teamIDClicked)
-                tableData[index].selectedButtons[1] = false
-            }
-            else{
-                moneyAway.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Moneyline", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[1] = true
-
-            }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
-    }
-    @IBAction func totalAwayPushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 2]
-        teamIDClicked = "Away"
-        var spread = ""
-        var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
-        awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
-        homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
-
-        //    print(spreadAway.currentTitle)
-            let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                impactMed.impactOccurred()
-            print("push")
-            let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
-        
-            vc.titleText = title.text!
-            vc.betType = "Over/Under"
-            vc.spread = totalAway.currentTitle!
-        if let firstLine = totalAway.currentTitle!.components(separatedBy: CharacterSet.newlines).first {
-            vc.spread = firstLine
-            spread = firstLine
-        }
-        if let secondLine = totalAway.currentTitle!.components(separatedBy: CharacterSet.newlines).last {
-            vc.odds = secondLine
-            odds = secondLine
-        }
-        gameIDclicked = gameID.text!
-
-            vc.teamNameText = awayTeamName.text!
-          //  vc.teamName!.text = awayTeamName.text
-            
-        if creatingParlay {
-            if totalAway.backgroundColor == UIColor(named: "darkerGreen"){
-
-                totalAway.backgroundColor = UIColor(named: "lightGreen")
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Over/Under", teamID: teamIDClicked)
-                tableData[index].selectedButtons[3] = false
-            }
-            else{
-                totalAway.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Over/Under", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[3] = true
-
-            }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
-    }
-    @IBAction func spreadHomePushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 3]
-        teamIDClicked = "Home"
-        var spread = ""
-        var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
-        awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
-        homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
-        
-        
-        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-            impactMed.impactOccurred()
-        let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
     
-        vc.titleText = title.text!
-        vc.betType = "Spread"
-        if let firstLine = spreadHome.currentTitle!.components(separatedBy: CharacterSet.newlines).first {
-            vc.spread = firstLine
-            spread = firstLine
-        }
-        if let secondLine = spreadHome.currentTitle!.components(separatedBy: CharacterSet.newlines).last {
-            vc.odds = secondLine
-            odds = secondLine
-        }
-        vc.teamNameText = homeTeamName.text!
-      //  vc.teamName!.text = awayTeamName.text
-        gameIDclicked = gameID.text!
-        
-        if creatingParlay {
-            if spreadHome.backgroundColor == UIColor(named: "darkerGreen"){
-                print("test")
-
-                spreadHome.backgroundColor = UIColor(named: "lightGreen")
-    
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Spread", teamID: teamIDClicked)
-                tableData[index].selectedButtons[3] = false
-            }
-            else{
-                spreadHome.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Spread", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[3] = true
-
-            }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
-        
-    }
-    @IBAction func moneyHomePushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 4]
-        teamIDClicked = "Home"
-        var spread = ""
-        var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
-        awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
-        homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
-
-        //    print(spreadAway.currentTitle)
-            let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                impactMed.impactOccurred()
-            let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
-        
-            vc.titleText = title.text!
-            vc.betType = "Moneyline"
-            vc.odds = moneyHome.currentTitle!
-            odds = moneyHome.currentTitle!
-            vc.spread = moneyHome.currentTitle!
-           spread = moneyHome.currentTitle!
-            vc.teamNameText = homeTeamName.text!
-          //  vc.teamName!.text = awayTeamName.text
-        gameIDclicked = gameID.text!
-
-        if creatingParlay {
-            if moneyHome.backgroundColor == UIColor(named: "darkerGreen"){
-
-                moneyHome.backgroundColor = UIColor(named: "lightGreen")
-                print(activeGames[index].gameID)
-                print(teamIDClicked)
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Moneyline", teamID: teamIDClicked)
-                tableData[index].selectedButtons[4] = false
-            }
-            else{
-                moneyHome.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Moneyline", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[4] = true
-
-            }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
-    }
-    @IBAction func totalHomePushed(_ sender: UIButton) {
-        //Common Vars
-        buttonIndex = [index, 5]
-        teamIDClicked = "Home"
-        var spread = ""
-        var odds = ""
-        teamBetOn = awayTeamName.text ?? "Null"
-        awayTeamAbbrv = nameToAbbrv[awayTeamName.text!] ?? "No Team"
-        homeTeamAbbrv = nameToAbbrv[homeTeamName.text!] ?? "No Team"
-
-        //    print(spreadAway.currentTitle)
-            let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                impactMed.impactOccurred()
-            print("push")
-            let vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "BetClicked") as! BetClickedViewController
-        
-            vc.titleText = title.text!
-            vc.betType = "Over/Under"
-            vc.spread = totalHome.currentTitle!
-        if let firstLine = totalHome.currentTitle!.components(separatedBy: CharacterSet.newlines).first {
-            vc.spread = firstLine
-            spread = firstLine
-        }
-        if let secondLine = totalHome.currentTitle!.components(separatedBy: CharacterSet.newlines).last {
-            vc.odds = secondLine
-            odds = secondLine
-        }
-        gameIDclicked = gameID.text!
-
-            vc.teamNameText = awayTeamName.text!
-          //  vc.teamName!.text = awayTeamName.text
+    func parlay(typeOfBet : String, odds : String, spread : String, sender : UIButton){
+      
             
-        if creatingParlay {
-            if totalHome.backgroundColor == UIColor(named: "darkerGreen"){
+            if sender.backgroundColor == UIColor(named: "darkerGreen"){
+                UIView.animate(withDuration: 0.3) {
+                    sender.backgroundColor = UIColor(named: "lightGreen")
+                }
 
-                totalHome.backgroundColor = UIColor(named: "lightGreen")
-                removeFromParlay(gameID: activeGames[index].gameID, typeOfBet: "Over/Under", teamID: teamIDClicked)
-                tableData[index].selectedButtons[5] = false
+                removeFromParlay(gameID: activeGames[section][index].gameID, typeOfBet: typeOfBet, teamID: teamIDClicked)
+                //print("Selected Button : \(tableData[section][index].selectedButtons[buttonIndex[1]])")
+                tableData[section][index].selectedButtons[buttonIndex[1]] = false
             }
             else{
-                totalHome.backgroundColor = UIColor(named: "darkerGreen")
-                addToParlay(typeOfBet: "Over/Under", spread: spread, odds: odds, teamPicked: teamIDClicked, game: activeGames[index])
-                tableData[index].selectedButtons[5] = true
+                UIView.animate(withDuration: 0.3) {
+                  sender.backgroundColor = UIColor(named: "darkerGreen")
+                }
+                if let game = currentGame{
+                    addToParlay(typeOfBet: typeOfBet, spread: spread, odds: odds, teamPicked: teamIDClicked, game: game, buttonPosition: buttonIndex[1], longHomeName: game.homeTeamLong, longAwayName: game.awayTeamLong, date: game.datePrint)
+                    tableData[section][index].selectedButtons[buttonIndex[1]] = true
+                }
+              
 
             }
-                
-           }
-           else   {
-               self.window?.rootViewController?.presentBottomHalfModal(vc, animated: true, completion: nil)
-           }
     }
-    func addToParlay(typeOfBet : String, spread: String, odds : String, teamPicked : String, game : MatchupData){
+    
+    func addToParlay(typeOfBet : String, spread: String, odds : String, teamPicked : String, game : MatchupData, buttonPosition : Int, longHomeName : String, longAwayName : String, date : String){
         var tempComponent : parlayComponent?
         if teamPicked == "Home"{
-             tempComponent = parlayComponent(teamID: teamPicked, typeOfBet: typeOfBet, odds: odds, betGameID: game.gameID, spread: spread, outcome: "In Progress", homeAbbrv: game.homeTeam, awayAbbrv: game.awayTeam, teamBetOn: game.homeTeam)
+            tempComponent = parlayComponent(teamID: teamPicked, typeOfBet: typeOfBet, odds: odds, betGameID: game.gameID, spread: spread, outcome: "Open", homeAbbrv: game.homeTeam, longHomeName: longHomeName, longAwayName: longAwayName, date: date, awayAbbrv: game.awayTeam, teamBetOn: game.homeTeam, league: game.league, buttonIndex: buttonIndex)
         }
         else if teamPicked == "Away"{
-             tempComponent = parlayComponent(teamID: teamPicked, typeOfBet: typeOfBet, odds: odds, betGameID: game.gameID, spread: spread, outcome: "In Progress", homeAbbrv: game.homeTeam, awayAbbrv: game.awayTeam, teamBetOn: game.awayTeam)
+            tempComponent = parlayComponent(teamID: teamPicked, typeOfBet: typeOfBet, odds: odds, betGameID: game.gameID, spread: spread, outcome: "Open", homeAbbrv: game.homeTeam, longHomeName: longHomeName, longAwayName: longAwayName, date: date, awayAbbrv: game.awayTeam, teamBetOn: game.awayTeam, league: game.league, buttonIndex: buttonIndex)
         }
         parlayComponents.append(tempComponent!)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "parlay"), object: nil)
@@ -379,5 +261,18 @@ class BettingTableViewCell: UITableViewCell {
             }
             count += 1
         }
+    }
+}
+extension UIImageView {
+    func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
+        containerView.clipsToBounds = false
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 1
+        containerView.layer.shadowOffset = CGSize.zero
+        containerView.layer.shadowRadius = 10
+        containerView.layer.cornerRadius = cornerRadious
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadious).cgPath
+        self.clipsToBounds = true
+        self.layer.cornerRadius = cornerRadious
     }
 }

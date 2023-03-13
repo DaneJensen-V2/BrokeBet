@@ -5,9 +5,11 @@
 //  Created by Dane Jensen on 10/12/21.
 //
 
+
 import UIKit
 
 class PlayerStatsViewController: UIViewController, UITableViewDelegate {
+    /*
     @IBOutlet weak var backButton: UINavigationItem!
     var rusherHeaderPrinted = false
     var receivingHeaderPrinted = false
@@ -38,8 +40,8 @@ class PlayerStatsViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         statsTable.delegate = self
-        statsTable.dataSource = self
-
+       statsTable.dataSource = self
+        
         self.title = currentGame.awayTeam + " @ " + currentGame.homeTeam
         
         
@@ -350,7 +352,9 @@ extension PlayerStatsViewController : UITableViewDataSource{
             return cell
          
     }
+         
     
-    
-    
+    }
+    */
 }
+

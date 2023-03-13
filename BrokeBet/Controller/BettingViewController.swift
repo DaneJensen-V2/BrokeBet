@@ -7,18 +7,34 @@
 
 import UIKit
 import Firebase
-var footballGame = footballMatch()
+var ScoreFetcher = scoreFetcher()
+var BettingFetcher = bettingFetcher()
 var timer = Timer()
 var runNumber2 = 0
 let db = Firestore.firestore()
-
+var overallCount = 0
+var bettingCount = 0
 var balance = 1000
 var currentUser : BBUser = BBUser(UserID: "", firstName: "", lastName: "", currentBalance: -1, activeBets: [], closedBets: [], Bets: 0, Won: 0, Lost: 0, Earned: 0)
+var tempGameList : [[MatchupData]] = []
 var signedIn : Bool = false
 let group = DispatchGroup()
 var requestDone = true
 var bettingDone = false
-var tableData : [betDataForTable] = []
+var tableData : [[betDataForTable]] = []
+let bettingTableSections = ["NFL", "NBA", "College Football", "MLB"]
+let summaryURLS = ["https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=",
+                   "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=",
+               "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=",
+                   "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event="
+                    ]
+
+let scoreboardURLS = ["https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+                      "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+                      "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
+                      "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
+
+                      ]
 
 class BettingViewController: UIViewController, UITableViewDelegate {
     let db = Firestore.firestore()
@@ -30,14 +46,20 @@ class BettingViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var bettingTable: UITableView!
     
     override func viewDidLoad() {
+        print("viewDidLoad")
         super.viewDidLoad()
         typealias FinishedMethod = ()
-        
+        for _ in bettingTableSections{
+            tableData.append([])
+            tempGameList.append([])
+        }
         bettingTable.delegate = self
         bettingTable.dataSource = self
         parlayButton.layer.cornerRadius = 10
         NotificationCenter.default.addObserver(self, selector: #selector(showButton), name: NSNotification.Name(rawValue: "parlay"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: Notification.Name("reloadTable"), object: nil)
+        bettingTable.sectionHeaderTopPadding = 5
+        
         let checkUser = Auth.auth().currentUser
         
         if (checkUser != nil) {
@@ -48,34 +70,14 @@ class BettingViewController: UIViewController, UITableViewDelegate {
             balanceLabel.text = "$" + String("--")
             
         }
+        bettingTable.separatorStyle = .none
         parlayButton.titleLabel!.lineBreakMode = .byWordWrapping
         parlayButton.titleLabel!.numberOfLines = 2
         parlayButton.titleLabel!.textAlignment = .center
         let pan = UIPanGestureRecognizer(target: self, action: #selector(BettingViewController.panButton(pan:)))
         parlayButton.addGestureRecognizer(pan)
-        
-        loadDataBetting(){success in
-            if(activeGames.count == 0 ){
-                DispatchQueue.main.async {
-                    self.bettingTable.isHidden = true
-
-                }
-                return
-            }
-            else{
-                self.convertToTableStruct(){success in
-                    DispatchQueue.main.async(execute: { () -> Void in
-                      
-                        self.bettingTable.isHidden = false
-                        self.bettingTable.separatorColor = .gray
-                        self.spinner.stopAnimating()
-                        self.bettingTable.reloadData()
-                    })
-                }
-                
-                
-            }
-        }
+        bettingTable.register(UINib(nibName: "bettingTableHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "bettingTableHeader")
+        loadDataBetting()
         
         bettingTable.register(UINib(nibName : "BettingTableViewCell", bundle: nil) , forCellReuseIdentifier: "bettingCell")
         
@@ -119,7 +121,7 @@ class BettingViewController: UIViewController, UITableViewDelegate {
                 
             }
         }
-        let timer3 = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer3 in
+        let timer3 = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { timer3 in
             if(signedIn == true){
                 self.checkAllBets()
                 
@@ -155,6 +157,11 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    @objc func reloadTable(){
+        DispatchQueue.main.async {
+            self.bettingTable.reloadData()
+        }
+    }
     func loadCurrentUser(user : User){
         let docRef = db.collection("Users").document(user.uid)
         
@@ -172,8 +179,8 @@ class BettingViewController: UIViewController, UITableViewDelegate {
                     
                     print("Loaded User")
                     print(currentUser.UserID)
-                    print(currentUser.currentBalance)
-                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateStats"), object: nil)
+
                 } else {
                     // A nil value was successfully initialized from the DocumentSnapshot,
                     // or the DocumentSnapshot was nil.
@@ -186,40 +193,94 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         }
     }
     @objc func panButton(pan: UIPanGestureRecognizer) {
-        /*
-        if pan.state == .began {
-            let buttonY = parlayButton.center // store old button center
-        } else if pan.state == .ended || pan.state == .failed || pan.state == .cancelled {
-            button.center = buttonCenter // restore button center
-        } else {
-            let location = pan.location(in: view) // get pan location
-            button.center = location // set button to where finger is
-        }
-         */
     }
-    func loadDataBetting(completion: @escaping (Bool) -> Void){
+    func loadDataBetting(){
         currentGameList = []
-        
+        for _ in bettingTableSections{
+            currentGameList.append([])
+        }
+        overallCount = 0
         bettingTable.backgroundView = spinner
         spinner.startAnimating()
+        bettingTable.tableHeaderView?.isHidden = true
         bettingTable.separatorColor = .clear
-        
-        
-        footballGame.performRequest(urlString: footballGame.gameURL){success in
-            self.loadBettingOdds(){success in
-                self.determineActiveGames()
-                completion(true)
-            
+
+        Task {
+            do {
+                let NFLGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[0])
+                let NBAGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[1])
+                let CFLGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[2])
+                let MLBGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[3])
+
+                print(NFLGames.events.count)
+                print(NBAGames.events.count)
+                print(CFLGames.events.count)
+                print(MLBGames.events.count)
+
+                let NFLGamesParsed = try await ScoreFetcher.parseGameResults(game: "NFL", data: NFLGames)
+                let NBAGamesParsed = try await ScoreFetcher.parseGameResults(game: "NBA", data: NBAGames)
+                let CFLGamesParsed = try await ScoreFetcher.parseGameResults(game: "", data: CFLGames)
+                let MLBGamesParsed = try await ScoreFetcher.parseGameResults(game: "MLB", data: MLBGames)
+
+                currentGameList[0] = NFLGamesParsed
+                currentGameList[1] = NBAGamesParsed
+                currentGameList[2] = CFLGamesParsed
+                currentGameList[3] = MLBGamesParsed
+                
+                
+                for list in currentGameList{
+                    overallCount += list.count
+                }
+                
+                loadBetting()
             }
-            
+            catch{
+                print("Request failed with error : \(error)")
+            }
         }
-        
+    }
+    func loadBetting(){
+        var listCount = 0
+        for list in currentGameList{
+            var gameCount = 0
+            for game in list{
+                fetchBettingOdds(Game : game, section: listCount, gameNum: gameCount)
+                gameCount += 1
+            }
+            listCount += 1
+        }
+    }
+    func fetchBettingOdds(Game : MatchupData, section : Int, gameNum : Int){
+        Task{
+
+        let bettingData = try await BettingFetcher.fetchBettingData(from: summaryURLS[section], ID: Game.gameID)
+        currentGameList[section][gameNum].bettingData = bettingData
+        bettingCount += 1
+          //  print("Betting Count: \(bettingCount) Overall Count \(overallCount)")
+            if bettingCount == overallCount{
+                finishedLoading()
+                return
+            }
+        }
     }
     
     @IBAction func loginButtonPushed(_ sender: UIButton) {
         if(signedIn == true){
-            signedIn = false
-            logout()
+            let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: UIAlertController.Style.alert)
+
+                   // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Logout", style: UIAlertAction.Style.destructive, handler: { action in
+
+                signedIn = false
+                self.logout()
+
+            }))
+                   alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+       
+
+                   // show the alert
+                   self.present(alert, animated: true, completion: nil)
+         
         }
         else{
             print("Login")
@@ -229,46 +290,66 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         
     }
     func determineActiveGames(){
-        for game in currentGameList{
-            if(game.gameStatus == "pre" || game.gameStatus == "post"){
-                activeGames.append(game);
+        print("Determining")
+        activeGames = []
+        for _ in bettingTableSections{
+            print("APPENDING")
+            activeGames.append([])
+        }
+        var section = 0
+        for gameList in currentGameList{
+            for game in gameList{
+                if(game.gameStatus == "pre" || game.gameStatus == "post"){
+                    activeGames[section].append(game);
+                }
             }
+            section += 1
         }
     }
-    func checkAllBets(){
-        for bet in currentUser.activeBets{
-            print("Bet Checked")
-            if(bet.typeOfBet == "Spread"){
-                print("Spread Checked")
-                for game in currentGameList {
-                    if (bet.betGameID == game.gameID){
-                        if(game.gameStatus == "post"){
-                            checkForWin(bet: bet, game: game)
-                        }
-                    }
-                }
+    
+    func finishedLoading(){
+        self.convertTempToMain()
+        self.determineActiveGames()
+        
+        if(activeGames.count == 0 ){
+            DispatchQueue.main.async {
+
             }
-            else if(bet.typeOfBet == "Moneyline"){
-                print("MoneyLine Checked")
-                for game in currentGameList {
-                    if (bet.betGameID == game.gameID){
-                        if(game.gameStatus == "post"){
-                            checkForWin(bet: bet, game: game)
-                        }
-                    }
-                }
-            }
-            else if(bet.typeOfBet == "Over/Under"){
-                print("Over/Under Checked")
-                for game in currentGameList {
-                    if (bet.betGameID == game.gameID){
-                        if(game.gameStatus == "post"){
-                            checkForWin(bet: bet, game: game)
-                        }
-                    }
-                }
-            }
+            return
         }
+        else{
+            self.convertToTableStruct(){success in
+                DispatchQueue.main.async(execute: { () -> Void in
+                  
+                    self.bettingTable.isHidden = false
+                    self.bettingTable.separatorColor = .gray
+                    self.spinner.stopAnimating()
+                    self.bettingTable.reloadData()
+                })
+            }
+            
+            
+        }
+    }
+    
+    func checkAllBets(){/*
+        for bet in currentUser.activeBets{
+            if bet.isParlay{
+                for component in bet.parlayComponents{
+                    
+                }
+            }
+            for game in currentGameList {
+                if (bet.betGameID == game.gameID){
+                    if(game.gameStatus == "post"){
+                         checkForWin(bet: bet, game: game)
+                            }
+                        }
+                    }
+                
+        }
+            
+         */
     }
     @objc func showButton(){
         UIView.animate(withDuration: 0.3) {
@@ -318,10 +399,9 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         }
         
     }
-    
+ 
     func updateButtonText(completion: @escaping (String) -> Void){
         var decimalOdds : [Double] = []
-        print(parlayComponents)
         if parlayComponents.isEmpty{
             completion("")
         }
@@ -355,320 +435,9 @@ class BettingViewController: UIViewController, UITableViewDelegate {
                 completion("+" + roundedString)
             }
         }
-    }
-    func checkForWin(bet : UserBet, game : MatchupData){
-        var spreadInt = 0.0
-        if(bet.typeOfBet == "Spread"){
-            if(bet.teamID == "Away"){
-                if(bet.spread.hasPrefix("+")){
-                    
-                    let stringSize = bet.spread.count
-                    
-                    let substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "+", with: "")
-                    spreadInt = Double(substr)!
-                    
-                    if(Int(game.awayScore)! > Int(game.homeScore)! || abs(Double((Int(game.homeScore)! - Int(game.awayScore)!))) <= spreadInt){
-                        betWon(bet: bet, game: game)
-                    }
-                    else{
-                        betLost(bet: bet, game: game)
-                    }
-                }
-                else if(bet.spread.hasPrefix("-")){
-                    var stringSize = bet.spread.count
-                    
-                    var substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "-", with: "")
-                    print(substr)
-                    spreadInt = Double(substr)!
-                    
-                    if(Int(game.awayScore)! > Int(game.homeScore)! && abs(Double((Int(game.awayScore)! - Int(game.homeScore)!))) >= spreadInt){
-                        betWon(bet: bet, game: game)
-                    }
-                    else{
-                        betLost(bet: bet, game: game)
-                    }
-                }
-            }
-            else if (bet.teamID == "Home"){
-                if(bet.spread.hasPrefix("+")){
-                    
-                    var stringSize = bet.spread.count
-                    
-                    var substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "+", with: "")
-                    spreadInt = Double(substr)!
-                    
-                    if(Int(game.homeScore)! > Int(game.awayScore)! || abs(Double((Int(game.awayScore)! - Int(game.homeScore)!))) <= spreadInt){
-                        betWon(bet: bet, game: game)
-                    }
-                    else{
-                        betLost(bet: bet, game: game)
-                    }
-                }
-                else if(bet.spread.hasPrefix("-")){
-                    var stringSize = bet.spread.count
-                    
-                    var substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "-", with: "")
-                    spreadInt = Double(substr)!
-                    
-                    if(Int(game.homeScore)! > Int(game.awayScore)! && abs(Double((Int(game.homeScore)! - Int(game.awayScore)!))) >= spreadInt){
-                        betWon(bet: bet, game: game)
-                    }
-                    else{
-                        betLost(bet: bet, game: game)
-                    }
-                    
-                }
-            }
-            
-            
-        }
-        else if(bet.typeOfBet == "Moneyline"){
-            if(bet.teamID == "Home"){
-                if(game.homeScore > game.awayScore){
-                    betWon(bet: bet, game: game)
-                }
-                else{
-                    betLost(bet: bet, game: game)
-                }
-            }
-            else if(bet.teamID == "Away"){
-                if(game.awayScore > game.homeScore){
-                    betWon(bet: bet, game: game)
-                }
-                else{
-                    betLost(bet: bet, game: game)
-                }
-            }
-            
-        }
-        else if(bet.typeOfBet == "Over/Under"){
-            if(bet.spread.hasPrefix("O")){
-                var stringSize = bet.spread.count
-                
-                var substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "O", with: "")
-                stringSize = substr.count
-                
-                substr = substr.substring(with: 1..<stringSize).replacingOccurrences(of: " ", with: "")
-                let totalInt = Double(substr)!
-                
-                if(Double(Int(game.awayScore)! + Int(game.homeScore)!) > totalInt){
-                    betWon(bet: bet, game: game)
-                }
-                else{
-                    betLost(bet: bet, game: game)
-                }
-            }
-            else if (bet.spread.hasPrefix("U")){
-                var stringSize = bet.spread.count
-                
-                var substr = bet.spread.substring(with: 1..<stringSize).replacingOccurrences(of: "U", with: "")
-                
-                stringSize = substr.count
-                
-                substr = substr.substring(with: 1..<stringSize).replacingOccurrences(of: " ", with: "")
-                let totalInt = Double(substr)!
-                
-                if(Double(Int(game.awayScore)! + Int(game.homeScore)!) < totalInt){
-                    betWon(bet: bet, game: game)
-                }
-                else {
-                    betLost(bet: bet, game: game)
-                }
-            }
-        }
         
     }
-    
-    
-    func betWon(bet : UserBet, game : MatchupData){
-        print("Congrats, you won a bet!")
-        var i = 0
-        let user = Auth.auth().currentUser
-        let currentuserID = user?.uid
-        let currentUserDB = self.db.collection("Users").document(currentuserID!)
-        
-        currentUser.currentBalance = currentUser.currentBalance + bet.potentialPayout
-        
-        for bet in currentUser.activeBets{
-            if(currentUser.activeBets[i].amountBet == bet.amountBet && currentUser.activeBets[i].betGameID == bet.betGameID && currentUser.activeBets[i].potentialPayout == bet.potentialPayout && currentUser.activeBets[i].typeOfBet == bet.typeOfBet){
-                
-                currentUser.activeBets.remove(at: i)
-                break
-            }
-            i += 1
-        }
-        print(currentUser.activeBets.count)
-        var wonBet = bet
-        wonBet.outcome = "Won"
-        print("REMOVED FROM DB")
-        
-        let encoded: [String: Any]
-        do {
-            // encode the swift struct instance into a dictionary
-            // using the Firestore encoder
-            encoded = try Firestore.Encoder().encode(bet)
-        } catch {
-            // encoding error
-            print(error)
-            return
-        }
-        let encoded2: [String: Any]
-        do {
-            // encode the swift struct instance into a dictionary
-            // using the Firestore encoder
-            encoded2 = try Firestore.Encoder().encode(wonBet)
-        } catch {
-            // encoding error
-            print(error)
-            return
-        }
-        currentUser.Earned = currentUser.Earned + Double(bet.potentialPayout) - Double(bet.amountBet)
-        currentUser.Won += 1
-        currentUser.Bets = currentUser.Bets + 1
-        currentUserDB.updateData([
-            "Bets" : currentUser.Bets,
-            "Earned" : currentUser.Earned,
-            "Won" : currentUser.Won,
-            "currentBalance": currentUser.currentBalance,
-            "Active Bets": FieldValue.arrayRemove([encoded]),
-            "Closed Bets" : FieldValue.arrayUnion([encoded2])
-
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-                currentUser.closedBets.append(bet)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateStats"), object: nil)
-
-            }
-        }
-    }
-    func convertToTableStruct(completion: @escaping (Bool)->Void){
-        do{
-        for game in activeGames{
-            var tempTableData = betDataForTable(title: "", date: "", homeTeamImage: UIImage(named: "AppIcon")!, awayTeamImage:  UIImage(named: "AppIcon")!, awayTeamName: "", homeTeamName: "", spreadAway: "", moneyAway: "", totalAway: "", spreadHome: "", moneyHome: "", totalHome: "")
-            tempTableData.awayTeamImage = game.awayLogo!
-            tempTableData.homeTeamImage = game.homeLogo!
-            tempTableData.awayTeamName = game.awayTeamLong
-            tempTableData.homeTeamName = game.homeTeamLong
-            tempTableData.title = game.awayTeam + " " + game.awayTeamLong + " at " + game.homeTeam + " " + game.homeTeamLong
-            tempTableData.date = game.datePrint.uppercased()
-            var symbol2 = ""
-            if(game.bettingData.awaySpread > 0){
-                symbol2 = "+"
-                tempTableData.spreadAway = (symbol2 + String(game.bettingData.awaySpread) + "\n" + String(Int(game.bettingData.spreadOddsAway)))
-            }
-            else if (game.bettingData.awaySpread == 0){
-                tempTableData.spreadAway = ( "PICK" + "\n" + String(Int(game.bettingData.spreadOddsAway)))
-            }
-            else {
-                symbol2 = ""
-                tempTableData.spreadAway = (symbol2 + String(game.bettingData.awaySpread) + "\n" + String(Int(game.bettingData.spreadOddsAway)))
-            }
-            if(game.bettingData.homeSpread > 0){
-                symbol2 = "+"
-                tempTableData.spreadHome = (symbol2 + String(game.bettingData.homeSpread) + "\n" + String(Int(game.bettingData.spreadOddsHome)))
-            }
-            else if (game.bettingData.awaySpread == 0){
-                tempTableData.spreadHome = ( "PICK" + "\n" + String(Int(game.bettingData.spreadOddsHome)))
-            }
-            else {
-                symbol2 = ""
-                tempTableData.spreadHome = (symbol2 + String(game.bettingData.homeSpread) + "\n" + String(Int(game.bettingData.spreadOddsHome)))
-            }
-            var symbol = ""
-            if(game.bettingData.moneyLineHome > 0){
-                symbol = "+"
-            }
-            else {
-                symbol = ""
-            }
-            
-            tempTableData.moneyHome = (symbol + String(game.bettingData.moneyLineHome))
-
-            tempTableData.totalHome = ("U " + String(game.bettingData.overUnder) + "\n" + String("-110"))
-
-
-            if(game.bettingData.moneyLineAway > 0){
-                symbol = "+"
-            }
-            
-            else {
-                symbol = ""
-            }
-            
-            tempTableData.moneyAway = (symbol + String(game.bettingData.moneyLineAway))
-
-            tempTableData.totalAway = ("O " + String(game.bettingData.overUnder) + "\n" + String("-110"))
-            
-           tableData.append(tempTableData)
-
-        }
-            completion(true)
-        }
-    }
-    func betLost(bet : UserBet, game : MatchupData){
-        print("Sorry, you lost a bet")
-        var i = 0
-        let user = Auth.auth().currentUser
-        let currentuserID = user?.uid
-        let currentUserDB = self.db.collection("Users").document(currentuserID!)
-        
-        for bet in currentUser.activeBets{
-            if(currentUser.activeBets[i].amountBet == bet.amountBet && currentUser.activeBets[i].betGameID == bet.betGameID && currentUser.activeBets[i].potentialPayout == bet.potentialPayout && currentUser.activeBets[i].typeOfBet == bet.typeOfBet){
-                
-                currentUser.activeBets.remove(at: i)
-                break
-            }
-            i += 1
-        }
-        currentUser.Lost += 1
-        currentUser.Earned = currentUser.Earned - Double(bet.amountBet)
-        currentUser.Bets = currentUser.Bets + 1
-
-        print(currentUser.activeBets.count)
-        var lostBet = bet
-        lostBet.outcome = "Lost"
-        print("REMOVED FROM DB")
-        
-        let encoded: [String: Any]
-        do {
-            // encode the swift struct instance into a dictionary
-            // using the Firestore encoder
-            encoded = try Firestore.Encoder().encode(bet)
-        } catch {
-            // encoding error
-            print(error)
-            return
-        }
-        let encoded2: [String: Any]
-        do {
-            // encode the swift struct instance into a dictionary
-            // using the Firestore encoder
-            encoded2 = try Firestore.Encoder().encode(lostBet)
-        } catch {
-            // encoding error
-            print(error)
-            return
-        }
-        currentUserDB.updateData([
-            "Bets" : currentUser.Bets,
-            "Earned" : currentUser.Earned,
-            "Lost" : currentUser.Lost,
-            "Active Bets": FieldValue.arrayRemove([encoded]),
-            "Closed Bets" : FieldValue.arrayUnion([encoded2])
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-                currentUser.closedBets.append(bet)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateStats"), object: nil)
-
-            }
-        }
-    }
+  
     func logout(){
         let firebaseAuth = Auth.auth()
         do {
@@ -679,127 +448,21 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    func loadBettingOdds(completion: @escaping (Bool) -> Void){
-        print("Total Events: \(totalEvents)")
-        var count = 0
-        var overallCount = 0
-        for game in currentGameList{
-            
-            let Betting = Betting()
-            let tempURL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="
-            let gameID = game.gameID
-            let gameURL = tempURL + gameID
-            
-            
-            
-            Betting.performRequest(urlString: gameURL, count: count){success in
-                overallCount += 1
-                if (overallCount == totalEvents ){
-                    completion(true)
+    func convertTempToMain(){
+        var list = 0
+        for betList in tempGameList{
+            for bet in betList{
+                var gameNum = 0
+            for game in currentGameList[list]{
+                if game.gameID == bet.gameID{
+                    print()
+                    currentGameList[list][gameNum].bettingData = bet.bettingData
                 }
+                gameNum += 1
             }
-            
-           count += 1
         }
-        
-    }
-}
-    
-
-
-extension BettingViewController : UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        
-        return tableData.count;
+            list += 1
+        }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-     return 208
-    }
- 
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-
-        let cell = bettingTable.dequeueReusableCell(withIdentifier: "bettingCell", for : indexPath) as! BettingTableViewCell
-        cell.index = indexPath.row
-        cell.awayTeamImage.image = tableData[indexPath.row].awayTeamImage
-        cell.homeTeamImage.image = tableData[indexPath.row].homeTeamImage
-
-        cell.awayTeamName.text = tableData[indexPath.row].awayTeamName
-        cell.homeTeamName.text = tableData[indexPath.row].homeTeamName
-        
-        cell.title.text = tableData[indexPath.row].title
-
-        cell.date.text = tableData[indexPath.row].date
-        
-        cell.spreadAway.setTitle(tableData[indexPath.row].spreadAway, for: .normal)
-        cell.spreadAway.titleLabel?.textAlignment = .center
-        
-        cell.spreadHome.setTitle(tableData[indexPath.row].spreadHome, for: .normal)
-        cell.spreadHome.titleLabel?.textAlignment = .center
-        
-     
-        cell.moneyAway.setTitle(tableData[indexPath.row].moneyAway, for: .normal)
-        
-        cell.moneyHome.setTitle(tableData[indexPath.row].moneyHome, for: .normal)
-
-        cell.totalAway.setTitle(tableData[indexPath.row].totalAway, for: .normal)
-        cell.totalAway.titleLabel?.textAlignment = .center
-        
-        cell.totalHome.setTitle(tableData[indexPath.row].totalHome, for: .normal)
-        cell.totalHome.titleLabel?.textAlignment = .center
-        
-        
-        let buttons = tableData[indexPath.row].selectedButtons
-        
-        if buttons[0]{
-            cell.spreadAway.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.spreadAway.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-        if buttons[1]{
-            cell.moneyAway.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.moneyAway.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-        if buttons[2]{
-            cell.totalAway.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.totalAway.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-        if buttons[3]{
-            cell.spreadHome.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.spreadHome.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-        if buttons[4]{
-            cell.moneyHome.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.moneyHome.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-        if buttons[5]{
-            cell.totalHome.backgroundColor = UIColor(named: "darkerGreen")
-        }
-        else{
-            cell.totalHome.backgroundColor = UIColor(named: "lightGreen")
-
-        }
-     
-    
-        return cell
-    }
 }

@@ -15,9 +15,7 @@ struct MatchupData {
     let awayLogo : UIImage?
     let awayColor : String
     let awayRecord : String
-    var awayPassers : [PassingStats]
-    var awayRushers : [RushingStats]
-    var awayReceivers : [ReceivingStats]
+
     
     
     let homeTeam : String
@@ -26,9 +24,7 @@ struct MatchupData {
     let homeLogo : UIImage?
     let homeColor : String
     let homeRecord : String
-    var homePassers : [PassingStats]
-    var homeRushers : [RushingStats]
-    var homeReceivers : [ReceivingStats]
+
     
     
     let gameID : String
@@ -37,16 +33,18 @@ struct MatchupData {
     let date : String
     let datePrint : String
     let gameStatus : String
+    let league : String
     
     var bettingData : BetData
-    var gameList : [MatchupData]
     
 }
 struct betDataForTable{
     var title : String
     var date : String
     var homeTeamImage : UIImage
+    var homeTeamColor : String
     var awayTeamImage : UIImage
+    var awayTeamColor : String
     var awayTeamName : String
     var homeTeamName : String
     var spreadAway : String
@@ -55,6 +53,7 @@ struct betDataForTable{
     var spreadHome : String
     var moneyHome : String
     var totalHome : String
+    var league : String
     
     var selectedButtons = [false, false, false, false, false, false]
 }

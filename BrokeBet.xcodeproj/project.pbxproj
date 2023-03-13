@@ -11,7 +11,7 @@
 		9F321A32E252E3E1CF274407 /* Pods_BrokeBet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EDBA8174D9EF0A2053B552 /* Pods_BrokeBet.framework */; };
 		A53A1CEA2714C4BA0067BD08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CE92714C4BA0067BD08 /* AppDelegate.swift */; };
 		A53A1CEC2714C4BA0067BD08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CEB2714C4BA0067BD08 /* SceneDelegate.swift */; };
-		A53A1CEE2714C4BA0067BD08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CED2714C4BA0067BD08 /* ViewController.swift */; };
+		A53A1CEE2714C4BA0067BD08 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1CED2714C4BA0067BD08 /* ScoresViewController.swift */; };
 		A53A1CF32714C4BA0067BD08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53A1CF22714C4BA0067BD08 /* Assets.xcassets */; };
 		A53A1CF62714C4BA0067BD08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53A1CF42714C4BA0067BD08 /* LaunchScreen.storyboard */; };
 		A53A1D012714C4BA0067BD08 /* BrokeBetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D002714C4BA0067BD08 /* BrokeBetTests.swift */; };
@@ -46,6 +46,7 @@
 		A53A1D59271BB3EE0067BD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D57271BB3EE0067BD08 /* Main.storyboard */; };
 		A53A1D5C271CDDDF0067BD08 /* BettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */; };
 		A53A1D5D271CDDDF0067BD08 /* BettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */; };
+		A53E1D0328ECFA6100805CE1 /* WinLossChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E1D0228ECFA6100805CE1 /* WinLossChecker.swift */; };
 		A541E8C2271CEC03008C31A8 /* francophilsans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A541E8C0271CEC03008C31A8 /* francophilsans.ttf */; };
 		A541E8C3271CEC03008C31A8 /* francophilsans-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A541E8C1271CEC03008C31A8 /* francophilsans-bold.ttf */; };
 		A541E8C5271CF782008C31A8 /* BettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8C4271CF782008C31A8 /* BettingViewController.swift */; };
@@ -63,6 +64,23 @@
 		A541E8E32739F4C8008C31A8 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */; };
 		A541E8E5273C3726008C31A8 /* BBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E4273C3726008C31A8 /* BBUser.swift */; };
 		A541E8E7273C3799008C31A8 /* UserBet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541E8E6273C3799008C31A8 /* UserBet.swift */; };
+		A5443FC228ED26FE00123088 /* ScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5443FC028ED26FE00123088 /* ScoreCollectionViewCell.swift */; };
+		A56CBF3B28FFC996000A0366 /* ParlayStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56CBF3928FFC996000A0366 /* ParlayStatTableViewCell.swift */; };
+		A56CBF3C28FFC996000A0366 /* ParlayStatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56CBF3A28FFC996000A0366 /* ParlayStatTableViewCell.xib */; };
+		A5742A8328C3308000E287A6 /* ParlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5742A8228C3308000E287A6 /* ParlayViewController.swift */; };
+		A5742A8828C3CE2A00E287A6 /* ParlayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5742A8628C3CE2A00E287A6 /* ParlayTableViewCell.swift */; };
+		A5742A8928C3CE2A00E287A6 /* ParlayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5742A8728C3CE2A00E287A6 /* ParlayTableViewCell.xib */; };
+		A5743B402910CFB0001FA0B1 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743B3F2910CFB0001FA0B1 /* LeaderboardViewController.swift */; };
+		A5743B432910D284001FA0B1 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743B412910D284001FA0B1 /* LeaderboardTableViewCell.swift */; };
+		A5743B442910D284001FA0B1 /* LeaderboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5743B422910D284001FA0B1 /* LeaderboardTableViewCell.xib */; };
+		A5743B462911925F001FA0B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743B452911925F001FA0B1 /* ProfileViewController.swift */; };
+		A5743B4829119461001FA0B1 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5743B4729119461001FA0B1 /* ProfileCollectionViewCell.swift */; };
+		A5824A882925A73800204128 /* NBAStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5824A862925A73800204128 /* NBAStatsTableViewCell.swift */; };
+		A5824A892925A73800204128 /* NBAStatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5824A872925A73800204128 /* NBAStatsTableViewCell.xib */; };
+		A5BF3CD2290A1794002A0484 /* bettingTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF3CD1290A1794002A0484 /* bettingTableHeader.swift */; };
+		A5BF3CD4290A17B4002A0484 /* bettingTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BF3CD3290A17B4002A0484 /* bettingTableHeader.xib */; };
+		A5D3A16828CC027F005F34AB /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3A16728CC027F005F34AB /* DBManager.swift */; };
+		A5D3A16B28CF93B5005F34AB /* BettingTableExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3A16A28CF93B5005F34AB /* BettingTableExt.swift */; };
 		A5ED9B89276480A000C17308 /* ActiveBetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */; };
 		A5ED9B8A276480A000C17308 /* ActiveBetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */; };
 		A5ED9B8C2764810000C17308 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ED9B8B2764810000C17308 /* StatsViewController.swift */; };
@@ -97,7 +115,7 @@
 		A53A1CE62714C4BA0067BD08 /* BrokeBet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrokeBet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53A1CE92714C4BA0067BD08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A53A1CEB2714C4BA0067BD08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A53A1CED2714C4BA0067BD08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A53A1CED2714C4BA0067BD08 /* ScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
 		A53A1CF22714C4BA0067BD08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A53A1CF52714C4BA0067BD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A53A1CF72714C4BA0067BD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +155,7 @@
 		A53A1D58271BB3EE0067BD08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTableViewCell.swift; sourceTree = "<group>"; };
 		A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BettingTableViewCell.xib; sourceTree = "<group>"; };
+		A53E1D0228ECFA6100805CE1 /* WinLossChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLossChecker.swift; sourceTree = "<group>"; };
 		A541E8C0271CEC03008C31A8 /* francophilsans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = francophilsans.ttf; sourceTree = "<group>"; };
 		A541E8C1271CEC03008C31A8 /* francophilsans-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "francophilsans-bold.ttf"; sourceTree = "<group>"; };
 		A541E8C4271CF782008C31A8 /* BettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +171,23 @@
 		A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		A541E8E4273C3726008C31A8 /* BBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBUser.swift; sourceTree = "<group>"; };
 		A541E8E6273C3799008C31A8 /* UserBet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBet.swift; sourceTree = "<group>"; };
+		A5443FC028ED26FE00123088 /* ScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		A56CBF3928FFC996000A0366 /* ParlayStatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlayStatTableViewCell.swift; sourceTree = "<group>"; };
+		A56CBF3A28FFC996000A0366 /* ParlayStatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParlayStatTableViewCell.xib; sourceTree = "<group>"; };
+		A5742A8228C3308000E287A6 /* ParlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlayViewController.swift; sourceTree = "<group>"; };
+		A5742A8628C3CE2A00E287A6 /* ParlayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlayTableViewCell.swift; sourceTree = "<group>"; };
+		A5742A8728C3CE2A00E287A6 /* ParlayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParlayTableViewCell.xib; sourceTree = "<group>"; };
+		A5743B3F2910CFB0001FA0B1 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		A5743B412910D284001FA0B1 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
+		A5743B422910D284001FA0B1 /* LeaderboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardTableViewCell.xib; sourceTree = "<group>"; };
+		A5743B452911925F001FA0B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A5743B4729119461001FA0B1 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5824A862925A73800204128 /* NBAStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBAStatsTableViewCell.swift; sourceTree = "<group>"; };
+		A5824A872925A73800204128 /* NBAStatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NBAStatsTableViewCell.xib; sourceTree = "<group>"; };
+		A5BF3CD1290A1794002A0484 /* bettingTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bettingTableHeader.swift; sourceTree = "<group>"; };
+		A5BF3CD3290A17B4002A0484 /* bettingTableHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bettingTableHeader.xib; sourceTree = "<group>"; };
+		A5D3A16728CC027F005F34AB /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		A5D3A16A28CF93B5005F34AB /* BettingTableExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTableExt.swift; sourceTree = "<group>"; };
 		A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveBetTableViewCell.swift; sourceTree = "<group>"; };
 		A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActiveBetTableViewCell.xib; sourceTree = "<group>"; };
 		A5ED9B8B2764810000C17308 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -274,9 +310,21 @@
 				A53A1D4B2717D4900067BD08 /* StatTableViewCell.swift */,
 				A53A1D4C2717D4900067BD08 /* StatTableViewCell.xib */,
 				A53A1D5A271CDDDF0067BD08 /* BettingTableViewCell.swift */,
+				A56CBF3928FFC996000A0366 /* ParlayStatTableViewCell.swift */,
+				A56CBF3A28FFC996000A0366 /* ParlayStatTableViewCell.xib */,
 				A5ED9B87276480A000C17308 /* ActiveBetTableViewCell.swift */,
 				A5ED9B88276480A000C17308 /* ActiveBetTableViewCell.xib */,
 				A53A1D5B271CDDDF0067BD08 /* BettingTableViewCell.xib */,
+				A5742A8628C3CE2A00E287A6 /* ParlayTableViewCell.swift */,
+				A5742A8728C3CE2A00E287A6 /* ParlayTableViewCell.xib */,
+				A5443FC028ED26FE00123088 /* ScoreCollectionViewCell.swift */,
+				A5BF3CD1290A1794002A0484 /* bettingTableHeader.swift */,
+				A5BF3CD3290A17B4002A0484 /* bettingTableHeader.xib */,
+				A5743B412910D284001FA0B1 /* LeaderboardTableViewCell.swift */,
+				A5743B422910D284001FA0B1 /* LeaderboardTableViewCell.xib */,
+				A5743B4729119461001FA0B1 /* ProfileCollectionViewCell.swift */,
+				A5824A862925A73800204128 /* NBAStatsTableViewCell.swift */,
+				A5824A872925A73800204128 /* NBAStatsTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -284,17 +332,20 @@
 		A53A1D2527153A4F0067BD08 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A53A1D192714D41A0067BD08 /* ScoreManager.swift */,
-				A53A1D4727175F5B0067BD08 /* StatsMananger.swift */,
-				A53A1CED2714C4BA0067BD08 /* ViewController.swift */,
+				A5D3A16928CC02ED005F34AB /* Networking */,
+				A53A1CED2714C4BA0067BD08 /* ScoresViewController.swift */,
 				A53A1D28271659160067BD08 /* PlayerStatsViewController.swift */,
 				A541E8C4271CF782008C31A8 /* BettingViewController.swift */,
-				A541E8CA2722261A008C31A8 /* BettingManager.swift */,
+				A53E1D0228ECFA6100805CE1 /* WinLossChecker.swift */,
+				A5D3A16A28CF93B5005F34AB /* BettingTableExt.swift */,
 				A541E8CE27225FF2008C31A8 /* BetClickedViewController.swift */,
 				A541E8DA27310AB5008C31A8 /* LoginViewController.swift */,
 				A541E8DC2739E741008C31A8 /* LoginPageViewController.swift */,
 				A541E8E22739F4C8008C31A8 /* RegisterPageViewController.swift */,
 				A5ED9B8B2764810000C17308 /* StatsViewController.swift */,
+				A5742A8228C3308000E287A6 /* ParlayViewController.swift */,
+				A5743B3F2910CFB0001FA0B1 /* LeaderboardViewController.swift */,
+				A5743B452911925F001FA0B1 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +369,17 @@
 				A53A1D302717515F0067BD08 /* Roboto-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A5D3A16928CC02ED005F34AB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A53A1D4727175F5B0067BD08 /* StatsMananger.swift */,
+				A5D3A16728CC027F005F34AB /* DBManager.swift */,
+				A541E8CA2722261A008C31A8 /* BettingManager.swift */,
+				A53A1D192714D41A0067BD08 /* ScoreManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		D2C73C1621BA2EA08B4583F7 /* Pods */ = {
@@ -457,12 +519,16 @@
 				A53A1D42271751600067BD08 /* Roboto-LightItalic.ttf in Resources */,
 				A53A1D40271751600067BD08 /* Roboto-Italic.ttf in Resources */,
 				A5ED9B8A276480A000C17308 /* ActiveBetTableViewCell.xib in Resources */,
+				A5742A8928C3CE2A00E287A6 /* ParlayTableViewCell.xib in Resources */,
 				A53A1D45271751600067BD08 /* Roboto-Black.ttf in Resources */,
+				A56CBF3C28FFC996000A0366 /* ParlayStatTableViewCell.xib in Resources */,
 				A541E8D127277E55008C31A8 /* moneyanimation.json in Resources */,
 				A53A1CF32714C4BA0067BD08 /* Assets.xcassets in Resources */,
 				A53A1D5D271CDDDF0067BD08 /* BettingTableViewCell.xib in Resources */,
 				A53A1D3E271751600067BD08 /* Roboto-Regular.ttf in Resources */,
+				A5BF3CD4290A17B4002A0484 /* bettingTableHeader.xib in Resources */,
 				A53A1D3A271751600067BD08 /* Roboto-Bold.ttf in Resources */,
+				A5824A892925A73800204128 /* NBAStatsTableViewCell.xib in Resources */,
 				A53A1D3F271751600067BD08 /* Roboto-Thin.ttf in Resources */,
 				A53A1D44271751600067BD08 /* Roboto-BoldItalic.ttf in Resources */,
 				A53A1D3D271751600067BD08 /* Roboto-BlackItalic.ttf in Resources */,
@@ -474,6 +540,7 @@
 				A53A1D3B271751600067BD08 /* Roboto-Light.ttf in Resources */,
 				A53A1D4E2717D4900067BD08 /* StatTableViewCell.xib in Resources */,
 				A53A1D59271BB3EE0067BD08 /* Main.storyboard in Resources */,
+				A5743B442910D284001FA0B1 /* LeaderboardTableViewCell.xib in Resources */,
 				A53A1D2D271747420067BD08 /* HeaderTableViewCell.xib in Resources */,
 				A53A1D202714F7E00067BD08 /* GameTableViewCell.xib in Resources */,
 			);
@@ -606,31 +673,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				A541E8C927222467008C31A8 /* BettingData.swift in Sources */,
+				A53E1D0328ECFA6100805CE1 /* WinLossChecker.swift in Sources */,
 				A53A1D1A2714D41B0067BD08 /* ScoreManager.swift in Sources */,
 				A53A1D4D2717D4900067BD08 /* StatTableViewCell.swift in Sources */,
 				A541E8E5273C3726008C31A8 /* BBUser.swift in Sources */,
+				A5824A882925A73800204128 /* NBAStatsTableViewCell.swift in Sources */,
+				A5742A8828C3CE2A00E287A6 /* ParlayTableViewCell.swift in Sources */,
 				A53A1D2C271747420067BD08 /* HeaderTableViewCell.swift in Sources */,
 				A53A1D1C2714ED6E0067BD08 /* GameData.swift in Sources */,
+				A5D3A16828CC027F005F34AB /* DBManager.swift in Sources */,
 				A53A1D562718A6260067BD08 /* ReceivingStats.swift in Sources */,
+				A5743B402910CFB0001FA0B1 /* LeaderboardViewController.swift in Sources */,
 				A53A1D5C271CDDDF0067BD08 /* BettingTableViewCell.swift in Sources */,
 				A53A1D522718A6070067BD08 /* PassingStats.swift in Sources */,
 				A541E8E32739F4C8008C31A8 /* RegisterPageViewController.swift in Sources */,
-				A53A1CEE2714C4BA0067BD08 /* ViewController.swift in Sources */,
+				A53A1CEE2714C4BA0067BD08 /* ScoresViewController.swift in Sources */,
 				A53A1D4827175F5B0067BD08 /* StatsMananger.swift in Sources */,
 				A541E8DB27310AB5008C31A8 /* LoginViewController.swift in Sources */,
 				A541E8C727222458008C31A8 /* BetData.swift in Sources */,
 				A53A1CEA2714C4BA0067BD08 /* AppDelegate.swift in Sources */,
+				A5743B432910D284001FA0B1 /* LeaderboardTableViewCell.swift in Sources */,
 				A53A1D22271506690067BD08 /* MatchupData.swift in Sources */,
+				A56CBF3B28FFC996000A0366 /* ParlayStatTableViewCell.swift in Sources */,
 				A5ED9B89276480A000C17308 /* ActiveBetTableViewCell.swift in Sources */,
 				A541E8C5271CF782008C31A8 /* BettingViewController.swift in Sources */,
 				A5ED9B8C2764810000C17308 /* StatsViewController.swift in Sources */,
 				A53A1D29271659160067BD08 /* PlayerStatsViewController.swift in Sources */,
+				A5D3A16B28CF93B5005F34AB /* BettingTableExt.swift in Sources */,
 				A53A1D542718A6160067BD08 /* RushingStats.swift in Sources */,
 				A53A1CEC2714C4BA0067BD08 /* SceneDelegate.swift in Sources */,
+				A5742A8328C3308000E287A6 /* ParlayViewController.swift in Sources */,
 				A541E8E7273C3799008C31A8 /* UserBet.swift in Sources */,
 				A541E8CF27225FF2008C31A8 /* BetClickedViewController.swift in Sources */,
+				A5443FC228ED26FE00123088 /* ScoreCollectionViewCell.swift in Sources */,
 				A53A1D4A27175FF00067BD08 /* PlayerStats.swift in Sources */,
+				A5743B4829119461001FA0B1 /* ProfileCollectionViewCell.swift in Sources */,
 				A53A1D1F2714F7E00067BD08 /* GameTableViewCell.swift in Sources */,
+				A5BF3CD2290A1794002A0484 /* bettingTableHeader.swift in Sources */,
+				A5743B462911925F001FA0B1 /* ProfileViewController.swift in Sources */,
 				A541E8DD2739E741008C31A8 /* LoginPageViewController.swift in Sources */,
 				A541E8CB2722261A008C31A8 /* BettingManager.swift in Sources */,
 			);

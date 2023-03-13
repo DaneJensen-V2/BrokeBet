@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="francophilsans-bold.ttf">
+            <string>FrancophilSans-Bold</string>
+        </array>
+        <array key="francophilsans.ttf">
+            <string>FrancophilSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parlayCell" rowHeight="76" id="KGk-i7-Jjw" customClass="ParlayTableViewCell" customModule="BrokeBet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="76"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arizona Cardinals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBJ-4I-jK9">
+                        <rect key="frame" x="15" y="5" width="113.5" height="18"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans-Bold" family="FrancophilSans" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-2.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua1-tQ-mOJ">
+                        <rect key="frame" x="136" y="5" width="24" height="18"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans" family="FrancophilSans" pointSize="16"/>
+                        <color key="textColor" systemColor="systemOrangeColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arizona Cardinals @ Los Angeles Rams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdR-St-QRa">
+                        <rect key="frame" x="15" y="28" width="240" height="18"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans" family="FrancophilSans" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spread" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cy-KD-SDY">
+                        <rect key="frame" x="15" y="51" width="44" height="18"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans" family="FrancophilSans" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-110" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1S7-PQ-Sf3">
+                        <rect key="frame" x="330.5" y="5" width="27.5" height="19"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans" family="FrancophilSans" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TY3-u0-BgH">
+                        <rect key="frame" x="-35" y="23" width="30" height="30"/>
+                        <color key="backgroundColor" name="RedColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="COP-ti-7as"/>
+                            <constraint firstAttribute="height" constant="30" id="ekq-3N-aAh"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                        <connections>
+                            <action selector="xClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="abk-WZ-ofk"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu, 5:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-eg-ywz">
+                        <rect key="frame" x="284" y="29" width="74" height="16"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans" family="FrancophilSans" pointSize="14"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="YTn-eg-ywz" secondAttribute="trailing" constant="15" id="0pa-mz-dRg"/>
+                    <constraint firstItem="1S7-PQ-Sf3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="0ps-nm-8te"/>
+                    <constraint firstAttribute="trailing" secondItem="1S7-PQ-Sf3" secondAttribute="trailing" constant="15" id="2QD-qs-68N"/>
+                    <constraint firstItem="ua1-tQ-mOJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="AUh-QP-J3A"/>
+                    <constraint firstItem="TY3-u0-BgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="-35" id="D4P-e5-iEA"/>
+                    <constraint firstItem="TY3-u0-BgH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="En9-mm-hYb"/>
+                    <constraint firstItem="bBJ-4I-jK9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="JqS-X9-uTd"/>
+                    <constraint firstItem="ua1-tQ-mOJ" firstAttribute="leading" secondItem="bBJ-4I-jK9" secondAttribute="trailing" constant="7.5" id="YHe-MU-ttA"/>
+                    <constraint firstItem="9Cy-KD-SDY" firstAttribute="top" secondItem="qdR-St-QRa" secondAttribute="bottom" constant="5" id="cYV-Au-QIY"/>
+                    <constraint firstItem="qdR-St-QRa" firstAttribute="top" secondItem="bBJ-4I-jK9" secondAttribute="bottom" constant="5" id="m5v-5n-Hji"/>
+                    <constraint firstItem="9Cy-KD-SDY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="myh-tU-6Wa"/>
+                    <constraint firstItem="bBJ-4I-jK9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="pWj-Ht-3EC"/>
+                    <constraint firstItem="qdR-St-QRa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="uQW-7u-7mh"/>
+                    <constraint firstItem="YTn-eg-ywz" firstAttribute="top" secondItem="1S7-PQ-Sf3" secondAttribute="bottom" constant="5" id="zhW-Mw-jVh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="buttonX" destination="bBJ-4I-jK9" id="ADf-GW-mza"/>
+                <outlet property="dateLabel" destination="YTn-eg-ywz" id="GYc-2P-5gz"/>
+                <outlet property="matchupLabel" destination="qdR-St-QRa" id="EBc-0W-WJS"/>
+                <outlet property="oddsLabel" destination="1S7-PQ-Sf3" id="iJ9-NG-tPH"/>
+                <outlet property="spread" destination="ua1-tQ-mOJ" id="x4P-pw-IGI"/>
+                <outlet property="spreadLabel" destination="9Cy-KD-SDY" id="xY1-2u-iEb"/>
+                <outlet property="teamLabel" destination="bBJ-4I-jK9" id="CJm-PH-Ygy"/>
+                <outlet property="xButton" destination="TY3-u0-BgH" id="CRF-rB-VLR"/>
+            </connections>
+            <point key="canvasLocation" x="170.28985507246378" y="75"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="RedColor">
+            <color red="0.92156862745098034" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

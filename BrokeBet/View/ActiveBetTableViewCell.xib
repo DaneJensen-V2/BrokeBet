@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -102,10 +103,18 @@
                             <constraint firstAttribute="height" constant="29" id="yFZ-QW-pHZ"/>
                         </constraints>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-115" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jA2-Re-tHr">
+                        <rect key="frame" x="274.5" y="67.5" width="29.5" height="19.5"/>
+                        <fontDescription key="fontDescription" name="FrancophilSans-Bold" family="FrancophilSans" pointSize="17"/>
+                        <color key="textColor" name="MoneyGreen"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OKy-fM-IIe" firstAttribute="top" secondItem="wig-Y6-CHX" secondAttribute="bottom" constant="61" id="9QV-Nn-kQK"/>
                     <constraint firstItem="OKy-fM-IIe" firstAttribute="leading" secondItem="NKb-qJ-JGw" secondAttribute="trailing" constant="89" id="BT5-6r-v6g"/>
+                    <constraint firstItem="jA2-Re-tHr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BfU-JA-wwu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jA2-Re-tHr" secondAttribute="trailing" id="DMs-nU-deX"/>
                     <constraint firstItem="wig-Y6-CHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Dym-Pa-75U"/>
                     <constraint firstItem="o4Q-vB-7sr" firstAttribute="top" secondItem="wig-Y6-CHX" secondAttribute="bottom" constant="27" id="EcG-ze-Jpq"/>
                     <constraint firstAttribute="trailing" secondItem="2CP-hr-kA5" secondAttribute="trailing" constant="16" id="HBc-hm-huQ"/>
@@ -135,6 +144,7 @@
                 <outlet property="homeShortName" destination="OKy-fM-IIe" id="boL-db-09f"/>
                 <outlet property="oddsLabel" destination="eg5-eH-40W" id="ZDJ-NA-WRS"/>
                 <outlet property="oddsLabelBottom" destination="auS-M7-bai" id="BzQ-8l-YQb"/>
+                <outlet property="outcomeLabel" destination="jA2-Re-tHr" id="B9k-uW-6jp"/>
                 <outlet property="paidOutLabel" destination="Ir2-Gw-B2T" id="K6X-Sh-89g"/>
                 <outlet property="wagerLabel" destination="RxD-bu-hiu" id="ZgI-v6-zUL"/>
             </connections>

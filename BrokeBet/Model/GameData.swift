@@ -8,7 +8,6 @@
 import Foundation
 struct GameData : Decodable {
     
-    let week : week
     let events : [events]
 }
 

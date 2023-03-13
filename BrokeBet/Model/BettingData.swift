@@ -22,13 +22,13 @@ struct pickcenter : Decodable {
 struct awayTeamOdds : Decodable{
     
     let favorite : Bool
-    let moneyLine : Int
-    let spreadOdds : Double
+    let moneyLine : Int?
+    let spreadOdds : Double?
 }
 struct homeTeamOdds : Decodable{
     let favorite : Bool
-    let moneyLine : Int
-    let spreadOdds : Double
+    let moneyLine : Int?
+    let spreadOdds : Double?
 }
 
 

@@ -9,6 +9,7 @@ import UIKit
 
 class ActiveBetTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var outcomeLabel: UILabel!
     @IBOutlet weak var paidOutLabel: UILabel!
     @IBOutlet weak var oddsLabelBottom: UILabel!
     @IBOutlet weak var wagerLabel: UILabel!
@@ -24,7 +25,7 @@ class ActiveBetTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    //    super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
