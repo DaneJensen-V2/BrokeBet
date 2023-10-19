@@ -33,8 +33,8 @@ class BetClickedViewController: UIViewController, SheetContentHeightModifiable {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var calculatedAmount: UILabel!
     
-    @IBOutlet weak var clickedAnimation: AnimationView!
-    @IBOutlet weak var TopAnimation: AnimationView!
+    @IBOutlet weak var clickedAnimation: LottieAnimationView!
+    @IBOutlet weak var TopAnimation: LottieAnimationView!
     @IBOutlet weak var gameName: UILabel!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var placeBetButton: UIButton!

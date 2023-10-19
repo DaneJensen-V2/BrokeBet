@@ -37,6 +37,7 @@ struct scoreFetcher{
         
         for eventNumber in 0...totalEvents - 1 {
             
+            
         let awayTeam = data.events[eventNumber].competitions[0].competitors[1]
         let homeTeam = data.events[eventNumber].competitions[0].competitors[0]
         let event = data.events[eventNumber].competitions[0]

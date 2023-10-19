@@ -178,7 +178,7 @@ class ScoresViewController: UIViewController, UITableViewDelegate {
                 print(NFLGames.events.count)
                 print(NBAGames.events.count)
                 print(CFLGames.events.count)
-                print(MLBGames.events.count)
+               print(MLBGames.events.count)
 
                 let NFLGamesParsed = try await ScoreFetcher.parseGameResults(game: "NFL", data: NFLGames)
                 let NBAGamesParsed = try await ScoreFetcher.parseGameResults(game: "NBA", data: NBAGames)
@@ -187,7 +187,7 @@ class ScoresViewController: UIViewController, UITableViewDelegate {
 
                 tempGameList[0] = NFLGamesParsed
                 tempGameList[1] = NBAGamesParsed
-                tempGameList[2] = CFLGamesParsed
+               tempGameList[2] = CFLGamesParsed
                 tempGameList[3] = MLBGamesParsed
                 
                 

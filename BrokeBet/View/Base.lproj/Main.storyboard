@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tmQ-OD-Hvq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tmQ-OD-Hvq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -108,7 +108,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BROKEBET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="930-9m-uP9">
-                                        <rect key="frame" x="130.5" y="12" width="153" height="34"/>
+                                        <rect key="frame" x="143.5" y="12" width="127.5" height="33"/>
                                         <fontDescription key="fontDescription" name="FrancophilSans-Bold" family="FrancophilSans" pointSize="29"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -238,15 +238,15 @@
             <objects>
                 <viewController id="rvt-a4-OML" customClass="ParlayViewController" customModule="BrokeBet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hrn-8c-vOF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d80-dh-eDa">
-                                <rect key="frame" x="0.0" y="48" width="414" height="85.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="85.5"/>
                                 <color key="backgroundColor" name="LogoColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKM-bX-xV2">
-                                <rect key="frame" x="354" y="68" width="40" height="40"/>
+                                <rect key="frame" x="354" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ITD-aI-03g"/>
                                     <constraint firstAttribute="width" constant="40" id="ral-hm-GZx"/>
@@ -260,7 +260,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uo6-nH-oIn">
-                                <rect key="frame" x="20" y="68" width="40" height="40"/>
+                                <rect key="frame" x="20" y="20" width="40" height="40"/>
                                 <color key="backgroundColor" name="LogoColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oxC-pG-vNp"/>
@@ -274,7 +274,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtZ-2u-cvL">
-                                <rect key="frame" x="130" y="63" width="40" height="40"/>
+                                <rect key="frame" x="130" y="15" width="40" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvH-Z1-N4e">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -294,7 +294,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsR-BI-Cw9">
-                                <rect key="frame" x="134" y="108" width="35" height="20"/>
+                                <rect key="frame" x="134" y="60" width="35" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="6Z5-Uo-SEV"/>
                                 </constraints>
@@ -303,7 +303,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxV-JS-CL8">
-                                <rect key="frame" x="244" y="63" width="40" height="40"/>
+                                <rect key="frame" x="244" y="15" width="40" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Wx1-UG-X8i"/>
@@ -314,7 +314,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ws-q2-ccn" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="50" y="319" width="314" height="200"/>
+                                <rect key="frame" x="50" y="343" width="314" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="8v2-cY-GS5"/>
@@ -324,7 +324,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRc-py-CiQ">
-                                <rect key="frame" x="236" y="108" width="53" height="20.5"/>
+                                <rect key="frame" x="236" y="60" width="53" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="NOQ-wS-PGz"/>
                                 </constraints>
@@ -333,11 +333,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vTA-AB-9Ba">
-                                <rect key="frame" x="0.0" y="143.5" width="414" height="444.5"/>
+                                <rect key="frame" x="0.0" y="95.5" width="414" height="540.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcJ-ga-lFa">
-                                <rect key="frame" x="0.0" y="588" width="414" height="260"/>
+                                <rect key="frame" x="0.0" y="636" width="414" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parlay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCc-3i-OYr">
                                         <rect key="frame" x="15" y="15" width="62" height="29"/>
@@ -569,15 +569,15 @@
                                         <fragment content="2 PICKS ">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="16" name="FrancophilSans"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="+322">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="20" name="FrancophilSans-Bold"/>
-                                                <font key="NSOriginalFont" size="18" name="FrancophilSans-Bold"/>
+                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                <font key="NSOriginalFont" metaFont="system" size="18"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -1614,7 +1614,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BROKEBET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22B-Dq-tjj">
-                                        <rect key="frame" x="130.5" y="14" width="153" height="34"/>
+                                        <rect key="frame" x="143.5" y="14" width="127.5" height="33"/>
                                         <fontDescription key="fontDescription" name="FrancophilSans-Bold" family="FrancophilSans" pointSize="29"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1664,6 +1664,11 @@
             <point key="canvasLocation" x="-4584.057971014493" y="1513.3928571428571"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="7Ws-q2-ccn"/>
+        <designable name="JWP-bR-OUA"/>
+        <designable name="csx-C6-hfC"/>
+    </designables>
     <resources>
         <image name="LAR" width="500" height="500"/>
         <image name="NFL-Logo" width="2000" height="2633"/>

@@ -8,11 +8,8 @@
 
 import Foundation
 import UIKit
+
 import Firebase
-import FirebaseCore
-import FirebaseAuth
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 class DBManager{
     let db = Firestore.firestore()

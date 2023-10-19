@@ -124,11 +124,16 @@ FieldFilter::FieldFilter(std::shared_ptr<const Filter::Rep> rep)
 
 const std::vector<FieldFilter>& FieldFilter::Rep::GetFlattenedFilters() const {
   // This is already a field filter, so we return a vector of size one.
-  if (Filter::Rep::memoized_flattened_filters_.empty()) {
-    Filter::Rep::memoized_flattened_filters_ = std::vector<FieldFilter>{
+  return memoized_flattened_filters_->memoize([&]() {
+    return std::vector<FieldFilter>{
         FieldFilter(std::make_shared<const Rep>(*this))};
-  }
-  return Filter::Rep::memoized_flattened_filters_;
+  });
+}
+
+std::vector<Filter> FieldFilter::Rep::GetFilters() const {
+  // This is the only filter within this object, so we return a list of size
+  // one.
+  return std::vector<Filter>{FieldFilter(std::make_shared<const Rep>(*this))};
 }
 
 FieldFilter::Rep::Rep(FieldPath field,
@@ -186,9 +191,7 @@ std::string FieldFilter::Rep::CanonicalId() const {
 }
 
 std::string FieldFilter::Rep::ToString() const {
-  return util::StringFormat("%s %s %s", field_.CanonicalString(),
-                            CanonicalName(op_),
-                            model::CanonicalId(*value_rhs_));
+  return CanonicalId();
 }
 
 bool FieldFilter::Rep::Equals(const Filter::Rep& other) const {
@@ -197,13 +200,6 @@ bool FieldFilter::Rep::Equals(const Filter::Rep& other) const {
   const auto& other_rep = static_cast<const FieldFilter::Rep&>(other);
   return op_ == other_rep.op_ && field_ == other_rep.field_ &&
          *value_rhs_ == *other_rep.value_rhs_;
-}
-
-const model::FieldPath* FieldFilter::Rep::GetFirstInequalityField() const {
-  if (IsInequality()) {
-    return &field();
-  }
-  return nullptr;
 }
 
 }  // namespace core

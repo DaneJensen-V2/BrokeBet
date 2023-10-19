@@ -42,19 +42,19 @@ class BettingTableViewCell: UITableViewCell {
         print("Awake from nib")
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 3, bottom: 0, right: 30))
+        
+        backgroundColor = .clear // very important
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.23
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = UIColor.black.cgColor
 
-        shadowLayer = CAShapeLayer()
-      
-        shadowLayer.path = UIBezierPath(roundedRect: contentView.frame, cornerRadius: 10).cgPath
-     shadowLayer.fillColor = UIColor.clear.cgColor
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 10
+       
 
-        shadowLayer.shadowColor = UIColor.black.cgColor
-        shadowLayer.shadowPath = shadowLayer.path
-        shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        shadowLayer.shadowOpacity = 0.2
-        shadowLayer.shadowRadius = 3
-
-        layer.insertSublayer(shadowLayer, at: 0)
+       // layer.insertSublayer(shadowLayer, at: 0)
     }
 
 

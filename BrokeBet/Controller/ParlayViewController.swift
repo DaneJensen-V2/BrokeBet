@@ -21,7 +21,7 @@ class ParlayViewController: UIViewController {
     @IBOutlet weak var balText: UILabel!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var picksLabel: UILabel!
-    @IBOutlet weak var animation: AnimationView!
+    @IBOutlet weak var animation: LottieAnimationView!
     @IBOutlet weak var balLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var picksView: UIView!

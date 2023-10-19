@@ -23,15 +23,10 @@
 #include <vector>
 
 #include "Firestore/core/src/model/model_fwd.h"
+#include "Firestore/core/src/util/thread_safe_memoizer.h"
 
 namespace firebase {
 namespace firestore {
-
-namespace immutable {
-template <typename T>
-class AppendOnlyList;
-}  // namespace immutable
-
 namespace core {
 
 class FieldFilter;
@@ -101,18 +96,17 @@ class Filter {
   }
 
   /**
-   * Returns the first inequality filter contained within this filter.
-   * Returns nullptr if it does not contain any inequalities.
-   */
-  const model::FieldPath* GetFirstInequalityField() const {
-    return rep_->GetFirstInequalityField();
-  }
-
-  /**
    * Returns a list of all field filters that are contained within this filter.
    */
   const std::vector<FieldFilter>& GetFlattenedFilters() const {
     return rep_->GetFlattenedFilters();
+  }
+
+  /**
+   * Returns a list of all filters that are contained within this filter
+   */
+  std::vector<Filter> GetFilters() const {
+    return rep_->GetFilters();
   }
 
   friend bool operator==(const Filter& lhs, const Filter& rhs);
@@ -120,6 +114,8 @@ class Filter {
  protected:
   class Rep {
    public:
+    Rep();
+
     virtual ~Rep() = default;
 
     virtual Type type() const {
@@ -151,15 +147,21 @@ class Filter {
 
     virtual bool IsEmpty() const = 0;
 
-    virtual const model::FieldPath* GetFirstInequalityField() const = 0;
-
     virtual const std::vector<FieldFilter>& GetFlattenedFilters() const = 0;
+
+    virtual std::vector<Filter> GetFilters() const = 0;
 
     /**
      * Memoized list of all field filters that can be found by
      * traversing the tree of filters contained in this composite filter.
+     *
+     * Use a `std::shared_ptr<ThreadSafeMemoizer>` rather than using
+     * `ThreadSafeMemoizer` directly so that this class is copyable
+     * (`ThreadSafeMemoizer` is not copyable because of its `std::once_flag`
+     * member variable, which is not copyable).
      */
-    mutable std::vector<FieldFilter> memoized_flattened_filters_;
+    mutable std::shared_ptr<util::ThreadSafeMemoizer<std::vector<FieldFilter>>>
+        memoized_flattened_filters_;
   };
 
   explicit Filter(std::shared_ptr<const Rep>&& rep) : rep_(rep) {
@@ -176,9 +178,6 @@ class Filter {
 inline bool operator!=(const Filter& lhs, const Filter& rhs) {
   return !(lhs == rhs);
 }
-
-/** A list of Filters, as used in Queries and elsewhere. */
-using FilterList = immutable::AppendOnlyList<Filter>;
 
 std::ostream& operator<<(std::ostream& os, const Filter& filter);
 

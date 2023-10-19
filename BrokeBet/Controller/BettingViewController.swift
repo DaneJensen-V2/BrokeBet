@@ -22,6 +22,8 @@ let group = DispatchGroup()
 var requestDone = true
 var bettingDone = false
 var tableData : [[betDataForTable]] = []
+
+
 let bettingTableSections = ["NFL", "NBA", "College Football", "MLB"]
 let summaryURLS = ["https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=",
                    "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=",
@@ -35,6 +37,7 @@ let scoreboardURLS = ["https://site.api.espn.com/apis/site/v2/sports/football/nf
                       "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
 
                       ]
+
 
 class BettingViewController: UIViewController, UITableViewDelegate {
     let db = Firestore.firestore()
@@ -208,21 +211,28 @@ class BettingViewController: UIViewController, UITableViewDelegate {
         Task {
             do {
                 let NFLGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[0])
+                
+                
                 let NBAGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[1])
                 let CFLGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[2])
                 let MLBGames = try await ScoreFetcher.fetchGames(from: scoreboardURLS[3])
-
+                
+                
                 print(NFLGames.events.count)
+                
                 print(NBAGames.events.count)
                 print(CFLGames.events.count)
                 print(MLBGames.events.count)
-
+                 
+                
                 let NFLGamesParsed = try await ScoreFetcher.parseGameResults(game: "NFL", data: NFLGames)
                 let NBAGamesParsed = try await ScoreFetcher.parseGameResults(game: "NBA", data: NBAGames)
                 let CFLGamesParsed = try await ScoreFetcher.parseGameResults(game: "", data: CFLGames)
                 let MLBGamesParsed = try await ScoreFetcher.parseGameResults(game: "MLB", data: MLBGames)
-
+                 
+        
                 currentGameList[0] = NFLGamesParsed
+                
                 currentGameList[1] = NBAGamesParsed
                 currentGameList[2] = CFLGamesParsed
                 currentGameList[3] = MLBGamesParsed
